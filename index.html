@@ -350,7 +350,7 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 <!-- ================= INICIO ================= -->
 <div class="view" id="v-inicio">
 <section class="hero" id="inicio">
-  <div class="hero-bg" id="heroBg"><div class="plate" data-src="main:0" data-k="hero" role="button" tabindex="0" aria-label="Ver Flamenco"></div></div>
+  <div class="hero-bg" id="heroBg"><div class="plate" data-src="main:2" data-k="hero" role="button" tabindex="0" aria-label="Ver Laguna espejo"></div></div>
   <div class="hero-in">
     <p class="eyebrow">Fotografía de viaje · fotofilia.es</p>
     <h1>Foto<em>filia</em></h1>
@@ -707,7 +707,7 @@ const fill=(el,p,seed)=>{el.innerHTML=p.img?`<img src="${p.img}" alt="${p.t}, ${
 const exif=p=>`<span class="exif">${p.x.map(v=>`<span>${v}</span>`).join('')}</span>`;
 const $=id=>document.getElementById(id);
 document.querySelectorAll('[data-src]').forEach(el=>{const [s,n]=el.dataset.src.split(':'),p=SETS[s][+n];fill(el,{...p,k:el.dataset.k,mono:p.mono||el.classList.contains('mono')},seedOf(s,+n))});
-{const h=SETS.main[0];document.getElementById('heroCap').innerHTML=`<div>Lámina I · ${h.t}, ${h.p}</div><span class="exif">${h.x.map(v=>`<span>${v}</span>`).join('')}</span>`}
+{const h=SETS.main[2];document.getElementById('heroCap').innerHTML=`<div>Lámina III · ${h.t}, ${h.p}</div><span class="exif">${h.x.map(v=>`<span>${v}</span>`).join('')}</span>`}
 const M=SETS.main,places=new Set(M.map(p=>p.c||p.p.split(',').pop().trim())),total=M.length+SETS.bn.length+SETS.leica.length;
 const metaHTML=[[2,'Viajes'],[places.size,'Países'],[total,'Láminas']].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
 $('meta').innerHTML=metaHTML;$('meta2').innerHTML=[[places.size,'Países'],[2,'Continentes'],['Sony · Leica','Sistemas']].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
