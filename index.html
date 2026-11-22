@@ -267,8 +267,9 @@ header.solid{background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-ba
 .play:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .play i{width:0;height:0;border-left:11px solid currentColor;border-top:7px solid transparent;border-bottom:7px solid transparent}
 .play[aria-pressed=true] i{width:11px;height:12px;border:0;border-left:4px solid currentColor;border-right:4px solid currentColor}
+document.querySelectorAll('[data-ph]').forEach(el=>fill(el,{k:el.dataset.k,t:'',p:''},150+(+el.dataset.ph)));
 /* folders */
-.folders{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}
+.folders{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}
 .fold{position:relative;display:block;text-decoration:none;color:inherit;padding-top:22px}
 .fold .bk{position:absolute;inset:22px 0 0;background:color-mix(in srgb,var(--fc) 82%,#000);border-radius:2px 6px 4px 4px}
 .fold .bk::before{content:"";position:absolute;left:0;top:-20px;width:46%;height:22px;background:inherit;border-radius:6px 10px 0 0;clip-path:polygon(0 0,86% 0,100% 100%,0 100%)}
@@ -393,7 +394,7 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 </div></section>
 
 <section class="band" id="carpetas" style="padding-top:0"><div class="wrap">
-  <div class="shead rv"><h2>Carpetas</h2><span class="lbl">Cuatro miradas sobre el mismo archivo</span></div>
+  <div class="shead rv"><h2>Carpetas</h2><span class="lbl">Seis miradas sobre el archivo</span></div>
   <div class="folders rv" id="folders"></div>
 </div></section>
 
@@ -526,6 +527,22 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 </div></section>
 </div>
 
+<!-- ================= EUROPA / ASIA Y ORIENTE MEDIO ================= -->
+<div class="view" id="v-europa" hidden>
+<section class="band thero"><div class="wrap g">
+  <div class="mat"><div class="plate" data-k="ciudad" data-ph="1"></div></div>
+  <aside><p class="eyebrow">Carpeta</p><h1>Europa</h1><p>Ciudades, costas y montañas del viejo continente. Las láminas de esta carpeta están en preparación.</p></aside>
+</div></section>
+<section class="band" style="padding-top:0"><div class="wrap"><div class="shead"><h2>Láminas</h2><span class="lbl">Próximamente</span></div><p class="lead">Aquí aparecerá la selección de fotografías de Europa.</p></div></section>
+</div>
+<div class="view" id="v-asia-y-oriente-medio" hidden>
+<section class="band thero"><div class="wrap g">
+  <div class="mat"><div class="plate" data-k="desierto" data-ph="2"></div></div>
+  <aside><p class="eyebrow">Carpeta</p><h1>Asia <em>y Oriente Medio</em></h1><p>Desiertos, mercados y templos de Asia y Oriente Medio. Las láminas de esta carpeta están en preparación.</p></aside>
+</div></section>
+<section class="band" style="padding-top:0"><div class="wrap"><div class="shead"><h2>Láminas</h2><span class="lbl">Próximamente</span></div><p class="lead">Aquí aparecerá la selección de fotografías de Asia y Oriente Medio.</p></div></section>
+</div>
+
 <section class="band news" id="contacto"><div class="wrap rv">
   <p class="eyebrow">Mantente al día</p>
   <h2>Próximos viajes,<br><em>nuevas imágenes</em></h2>
@@ -540,7 +557,7 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 <div class="klee dkb" data-seed="9" aria-hidden="true"></div>
 <footer>
   <div class="wrap">
-    <div class="ft"><span class="wm">Foto<em>filia</em></span><nav aria-label="Pie"><a href="#galeria">Galería</a><a href="#destinos">Destinos</a><a href="#blanco-y-negro">Blanco y negro</a><a href="#leica">Leica</a><a href="#musica-y-fotografia">Música</a><a href="#fotografia-y-vino">Vino</a><a href="#sobre">Sobre mí</a></nav></div>
+    <div class="ft"><span class="wm">Foto<em>filia</em></span><nav aria-label="Pie"><a href="#galeria">Galería</a><a href="#destinos">Destinos</a><a href="#blanco-y-negro">Blanco y negro</a><a href="#leica">Leica</a><a href="#musica-y-fotografia">Música</a><a href="#fotografia-y-vino">Vino</a><a href="#europa">Europa</a><a href="#asia-y-oriente-medio">Asia y Oriente Medio</a><a href="#sobre">Sobre mí</a></nav></div>
     <div class="fb"><span>© 2026 Asensio Navarro Ortega · fotofilia.es · Todos los derechos reservados</span><div class="soc"><a href="https://www.instagram.com/" title="Instagram">IG</a><a href="https://500px.com/" title="500px">5×</a><a href="https://www.flickr.com/" title="Flickr">FL</a></div></div>
   </div>
 </footer>
@@ -612,7 +629,9 @@ const FOLDERS=[
  {t:'Blanco y negro',d:'12 láminas en gris',go:'blanco-y-negro',src:['bn',5],fc:'#1c1c1c',ft:'#ece9e2'},
  {t:'Leica',d:'M11 y Summicron',go:'leica',src:['leica',1],fc:'#e2b04a',ft:'#1b1b1b'},
  {t:'Música y fotografía',d:'Jazz para cada lámina',go:'musica-y-fotografia',src:['main',7],fc:'#3d6a8e',ft:'#f6efe6'},
- {t:'Fotografía y vino',d:'Una lámina, una copa',go:'fotografia-y-vino',src:['main',6],fc:'#6e4466',ft:'#f6efe6'}
+ {t:'Fotografía y vino',d:'Una lámina, una copa',go:'fotografia-y-vino',src:['main',6],fc:'#6e4466',ft:'#f6efe6'},
+ {t:'Europa',d:'En preparación',go:'europa',k:'ciudad',fc:'#7d9a5b',ft:'#f6efe6'},
+ {t:'Asia y Oriente Medio',d:'En preparación',go:'asia-y-oriente-medio',k:'desierto',fc:'#e0812f',ft:'#1b1b1b'}
 ];
 const MUSIC=[
  {i:0,t:'So What',a:'Miles Davis',al:'Kind of Blue',y:1959,m:'Dos acordes y mucho espacio: el jazz modal tiene la amplitud del desierto.'},
@@ -719,7 +738,7 @@ document.querySelectorAll('.klee').forEach(el=>{const r=rnd((+el.dataset.seed||1
 document.querySelectorAll('.book.vinyl .cover').forEach(cv=>{const r=rnd(55);cv.querySelector('.plate').insertAdjacentHTML('afterend',`<span class="kq" aria-hidden="true">${Array.from({length:6},()=>`<i style="background:${KLEE[Math.floor(r()*7)]}"></i>`).join('')}</span>`)});
 /* folders */
 $('folders').innerHTML=FOLDERS.map(f=>`<a class="fold" href="#${f.go}" style="--fc:${f.fc};--ft:${f.ft}"><span class="bk"></span><div class="plate"></div><div class="fr2"><b>${f.t}</b><small>${f.d}</small></div></a>`).join('');
-$('folders').querySelectorAll('.fold .plate').forEach((el,n)=>{const [st,i]=FOLDERS[n].src;fill(el,SETS[st][i],seedOf(st,i))});
+$('folders').querySelectorAll('.fold .plate').forEach((el,n)=>{const f=FOLDERS[n];if(f.src){const [st,i]=f.src;fill(el,SETS[st][i],seedOf(st,i))}else fill(el,{k:f.k,t:f.t,p:''},140+n)});
 /* pairings */
 $('pairs-music').innerHTML=MUSIC.map(x=>{const p=M[x.i];return `<article class="pair"><div class="mat"><div class="plate" role="button" tabindex="0" data-open="main:${x.i}" aria-label="Ver ${p.t}"></div></div><div class="tx"><p class="eyebrow">${p.t} · ${p.p}</p><h3>${x.t}</h3><div class="who">${x.a} · <em>${x.al}</em>, ${x.y}</div><p>${x.m}</p></div></article>`}).join('');
 $('pairs-wine').innerHTML=WINE.map(x=>{const p=M[x.i];return `<article class="pair"><div class="mat"><div class="plate" role="button" tabindex="0" data-open="main:${x.i}" aria-label="Ver ${p.t}"></div></div><div class="tx"><div class="chip" style="--w:${x.w}"><i aria-hidden="true"></i><span>${x.c}</span></div><h3>${x.v}</h3><div class="who">${x.r} · con <em>${p.t}</em></div><p>${x.m}</p></div></article>`}).join('');
@@ -769,7 +788,7 @@ addEventListener('scroll',onScroll,{passive:true});
 const rvs=document.querySelectorAll('.rv');
 if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('on');io.unobserve(en.target)}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});rvs.forEach(el=>io.observe(el));setTimeout(()=>rvs.forEach(el=>el.classList.add('on')),4000)}else rvs.forEach(el=>el.classList.add('on'));
 /* tabs via hash */
-const VIEWS=['inicio','blanco-y-negro','leica','musica-y-fotografia','fotografia-y-vino'];
+const VIEWS=['inicio','blanco-y-negro','leica','musica-y-fotografia','fotografia-y-vino','europa','asia-y-oriente-medio'];
 const route=()=>{const h=location.hash.slice(1),t=h&&$(h),outside=t&&!t.closest('.view'),v=VIEWS.includes(h)?h:outside?curV:'inicio',changed=v!==curV||!route.done;
  VIEWS.forEach(x=>$('v-'+x).hidden=x!==v);curV=v;route.done=1;
  document.querySelectorAll('.nav nav a').forEach(a=>{a.dataset.v&&a.dataset.v!=='inicio'&&a.dataset.v===v?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
