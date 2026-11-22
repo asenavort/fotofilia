@@ -452,7 +452,7 @@ const SETS={
   {k:'ciudad',t:'Bajo los cerros',p:'Bogotá, Colombia',r:'america',x:['50 mm','f/4','1/30 s','ISO 1600'],m:'Una ciudad entera a los pies de la montaña que le da el agua.'},
   {k:'montana',t:'Colinas de niebla',p:'Eswatini',r:'africa',pick:1,x:['200 mm','f/8','1/320 s','ISO 200'],m:'Un reino pequeño de horizontes largos.'},
   {k:'sabana',t:'La hora dorada',p:'Kruger, Sudáfrica',r:'africa',x:['105 mm','f/8','1/500 s','ISO 200'],m:'La sabana al caer la tarde: el momento en que todo bebe.'},
-  {k:'andes',t:'Cordillera',p:'Chile central',r:'america',x:['85 mm','f/11','1/200 s','ISO 100'],m:'El hielo andino, depósito de agua de todo un valle.'},
+  {k:'andes',t:'Cordillera',p:'Chile central',c:'Chile',r:'america',x:['85 mm','f/11','1/200 s','ISO 100'],m:'El hielo andino, depósito de agua de todo un valle.'},
   {k:'noche',t:'Cielo austral',p:'Atacama, Chile',r:'america',pick:1,x:['24 mm','f/4','25 s','ISO 3200'],m:'Sin nubes ni ciudades: la noche tal como era.'},
   {k:'cocora',t:'Valle verde',p:'Quindío, Colombia',r:'america',x:['40 mm','f/9','1/160 s','ISO 200'],m:'Donde el agua sobra, el verde lo ocupa todo.'},
   {k:'mar2',t:'Índico sin orillas',p:'Maputo, Mozambique',r:'africa',x:['24 mm','f/8','1/250 s','ISO 100'],m:'La línea frágil donde vive media costa.'},
@@ -529,7 +529,7 @@ const fill=(el,p,seed)=>{el.innerHTML=p.img?`<img src="${p.img}" alt="${p.t}, ${
 const exif=p=>`<span class="exif">${p.x.map(v=>`<span>${v}</span>`).join('')}</span>`;
 const $=id=>document.getElementById(id);
 document.querySelectorAll('[data-src]').forEach(el=>{const [s,n]=el.dataset.src.split(':'),p=SETS[s][+n];fill(el,{...p,k:el.dataset.k,mono:p.mono||el.classList.contains('mono')},seedOf(s,+n))});
-const M=SETS.main,places=new Set(M.map(p=>p.p.split(',').pop().trim())),total=M.length+SETS.bn.length+SETS.leica.length;
+const M=SETS.main,places=new Set(M.map(p=>p.c||p.p.split(',').pop().trim())),total=M.length+SETS.bn.length+SETS.leica.length;
 const metaHTML=[[2,'Viajes'],[places.size,'Países'],[total,'Láminas']].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
 $('meta').innerHTML=metaHTML;$('meta2').innerHTML=[[places.size,'Países'],[2,'Continentes'],['Sony · Leica','Sistemas']].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
 /* negative strip */
