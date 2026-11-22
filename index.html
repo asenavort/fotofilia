@@ -274,7 +274,6 @@ header.solid{background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-ba
 .play:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .play i{width:0;height:0;border-left:11px solid currentColor;border-top:7px solid transparent;border-bottom:7px solid transparent}
 .play[aria-pressed=true] i{width:11px;height:12px;border:0;border-left:4px solid currentColor;border-right:4px solid currentColor}
-document.querySelectorAll('[data-ph]').forEach(el=>fill(el,{k:el.dataset.k,t:'',p:''},150+(+el.dataset.ph)));
 /* folders as 35 mm slide mounts */
 .folders{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:clamp(18px,2.6vw,34px)}
 .fold{display:block;text-decoration:none;color:#2a2622;background:#f4f1ea;border-radius:10px;padding:14% 13% 0;aspect-ratio:1/1.08;position:relative;box-shadow:0 1px 0 #fff inset,0 10px 24px -14px rgba(0,0,0,.45);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
@@ -827,6 +826,7 @@ const KLEE=['#c0432f','#e0812f','#e2b04a','#7d9a5b','#3d6a8e','#6e4466','#d99a86
 document.querySelectorAll('.klee').forEach(el=>{const r=rnd((+el.dataset.seed||1)*977),c=48;el.style.setProperty('--c',c);el.innerHTML=Array.from({length:c*2},()=>`<i style="background:${KLEE[Math.floor(r()*KLEE.length)]};opacity:${(.55+r()*.45).toFixed(2)}"></i>`).join('')});
 document.querySelectorAll('.book.vinyl .cover').forEach(cv=>{const r=rnd(55);cv.querySelector('.plate').insertAdjacentHTML('afterend',`<span class="kq" aria-hidden="true">${Array.from({length:6},()=>`<i style="background:${KLEE[Math.floor(r()*7)]}"></i>`).join('')}</span>`)});
 /* folders */
+document.querySelectorAll('[data-ph]').forEach(el=>fill(el,{k:el.dataset.k,t:'',p:''},150+(+el.dataset.ph)));
 $('folders').innerHTML=FOLDERS.map((f,n)=>`<a class="fold" href="#${f.go}" style="--fc:${f.fc}"><span class="no">FOTOFILIA · ${String(n+1).padStart(2,'0')}</span><span class="dot" aria-hidden="true"></span><div class="plate"></div><span class="lab">${f.t}</span><small>${f.d}</small></a>`).join('');
 $('folders').querySelectorAll('.fold .plate').forEach((el,n)=>{const f=FOLDERS[n];if(f.src){const [st,i]=f.src;fill(el,SETS[st][i],seedOf(st,i))}else fill(el,{k:f.k,t:f.t,p:''},140+n)});
 /* pairings */
