@@ -726,7 +726,7 @@ $('pairs-wine').innerHTML=WINE.map(x=>{const p=M[x.i];return `<article class="pa
 document.querySelectorAll('#pairs-music .plate,#pairs-wine .plate').forEach(el=>{const i=+el.dataset.open.split(':')[1];fill(el,M[i],seedOf('main',i))});
 /* lead sheet: jazz blues in F, Real Book style */
 const BLUES=[['F7'],['Bb7'],['F7'],['Cm7','F7'],['Bb7'],['Bdim7'],['F7'],['D7'],['Gm7'],['C7'],['F7','D7'],['Gm7','C7']];
-const chordTxt=c=>c.replace(/^([A-G])b/,'$1♭').replace('dim7','°7');
+const chordTxt=c=>c.replace(/^([A-G])b/,'$1<tspan class="mus" font-size="21" dx="1">♭</tspan>').replace('dim7','°7');
 const leadSheet=(nb,header)=>{const W=1000,rowH=118,rows=Math.ceil(nb/4),top=header?44:8;let s='';
  if(header){s+=`<text x="0" y="22" class="hand">Medium swing  ♩ = 132</text><rect x="${W-34}" y="2" width="30" height="28" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="${W-19}" y="24" text-anchor="middle" class="hand" style="font-weight:700">A</text>`}
  for(let r=0;r<rows;r++){const y0=top+r*rowH+44,x0=0,first=r===0,start=first?118:76,bw=(W-start-4)/4;
