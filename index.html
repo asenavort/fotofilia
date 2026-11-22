@@ -289,8 +289,8 @@ document.querySelectorAll('[data-ph]').forEach(el=>fill(el,{k:el.dataset.k,t:'',
 .night{--nb:#0d0a09;--na:#e8a33d;--nr:#7a1f2b;--nc:#f3e9d8;background:var(--nb);color:var(--nc)}
 .nx-hero{position:relative;min-height:min(92svh,820px);display:grid;align-items:end;overflow:hidden;isolation:isolate}
 .nx-photo{position:absolute;inset:0;z-index:-2}
-.nx-photo>img,.nx-photo>svg{filter:grayscale(1) contrast(1.25) brightness(.7)}
-.nx-photo::after{background:linear-gradient(180deg,rgba(13,10,9,.2),rgba(13,10,9,.95)),radial-gradient(60% 70% at 70% 30%,rgba(232,163,61,.55),transparent 70%),linear-gradient(90deg,rgba(122,31,43,.55),rgba(122,31,43,0));mix-blend-mode:normal;opacity:1}
+.nx-photo>img,.nx-photo>svg{filter:contrast(1.15) saturate(.95) brightness(.85)}
+.nx-photo::after{background:linear-gradient(180deg,rgba(13,10,9,0) 25%,rgba(13,10,9,.93)),linear-gradient(90deg,rgba(60,12,20,.75),rgba(122,31,43,0) 60%);mix-blend-mode:normal;opacity:1}
 .nx-smoke{position:absolute;inset:0;z-index:-1;pointer-events:none}
 .nx-smoke i{position:absolute;width:60vw;height:40vh;border-radius:50%;background:radial-gradient(closest-side,rgba(243,233,216,.10),transparent);filter:blur(30px)}
 .nx-smoke i:nth-child(1){left:-10vw;top:20%}.nx-smoke i:nth-child(2){right:-15vw;top:5%;width:70vw}.nx-smoke i:nth-child(3){left:30vw;bottom:-10%}
