@@ -288,14 +288,14 @@ document.querySelectorAll('[data-ph]').forEach(el=>fill(el,{k:el.dataset.k,t:'',
 /* night session: jazz & soul */
 .night{--nb:#0d0a09;--na:#e8a33d;--nr:#7a1f2b;--nc:#f3e9d8;background:var(--nb);color:var(--nc)}
 .nx-hero{position:relative;min-height:min(92svh,820px);display:grid;align-items:end;overflow:hidden;isolation:isolate}
-.nx-photo{position:absolute;inset:0;z-index:-2}
+.nx-photo{position:absolute;inset:0;z-index:0}
 .nx-photo>img,.nx-photo>svg{filter:contrast(1.15) saturate(.95) brightness(.85)}
 .nx-photo::after{background:linear-gradient(180deg,rgba(13,10,9,0) 25%,rgba(13,10,9,.93)),linear-gradient(90deg,rgba(60,12,20,.75),rgba(122,31,43,0) 60%);mix-blend-mode:normal;opacity:1}
-.nx-smoke{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.nx-smoke{position:absolute;inset:0;z-index:1;pointer-events:none}
 .nx-smoke i{position:absolute;width:60vw;height:40vh;border-radius:50%;background:radial-gradient(closest-side,rgba(243,233,216,.10),transparent);filter:blur(30px)}
 .nx-smoke i:nth-child(1){left:-10vw;top:20%}.nx-smoke i:nth-child(2){right:-15vw;top:5%;width:70vw}.nx-smoke i:nth-child(3){left:30vw;bottom:-10%}
 @media(prefers-reduced-motion:no-preference){.nx-smoke i{animation:drift 26s ease-in-out infinite alternate}.nx-smoke i:nth-child(2){animation-duration:34s}@keyframes drift{to{transform:translate(6vw,-4vh) scale(1.15)}}}
-.nx-in{padding:0 max(5vw,16px) clamp(40px,7vw,90px);max-width:1200px;margin:0 auto;width:100%}
+.nx-in{position:relative;z-index:2;padding:0 max(5vw,16px) clamp(40px,7vw,90px);max-width:1200px;margin:0 auto;width:100%}
 .nx-k{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--na);margin:0 0 14px}
 .night h1{font:400 clamp(58px,10vw,138px)/.9 "Abril Fatface",serif;letter-spacing:-.01em;color:var(--nc);margin:0 0 22px;text-shadow:0 4px 40px rgba(0,0,0,.6)}
 .night h1 em{font-style:italic;font-family:"Playfair Display",serif;font-weight:400;color:var(--na)}
