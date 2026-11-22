@@ -15,8 +15,9 @@
    PICTURE full-bleed parallax hero; asymmetric masonry of plates; black destinations band
    COLOUR cream #F7F5F0 ground, ink #0A0A0A, graphite #2C2C2C bands, gold #C8A96E (deep gold #8a6a32 for small text on cream), red #c8102e only in the mark and grease pencil
    TYPE Playfair Display for titles and wordmark, Inter for text and data
+   ACCENTS jazz (staves with notes, a vinyl sleeve, liner notes) and Paul Klee's magic-square palette in small doses
    LAYOUT inicio as the June page with today's sections woven in; tabs Blanco y negro and Leica; phone stacks everything */
-:root{color-scheme:light dark;--bg:light-dark(#F7F5F0,#0e0d0b);--ink:light-dark(#0A0A0A,#ece9e2);--txt:light-dark(#4a4a48,#b9b5ad);--mute:light-dark(#7d7a74,#8d8a85);--rule:light-dark(rgba(200,169,110,.35),rgba(200,169,110,.25));--paper:light-dark(#efece5,#171614);--gold:#C8A96E;--gold2:light-dark(#8a6a32,#C8A96E);--black:#0A0A0A;--graph:#2C2C2C;--red:#c8102e}
+:root{color-scheme:light dark;--bg:light-dark(#F7F5F0,#0e0d0b);--ink:light-dark(#0A0A0A,#ece9e2);--txt:light-dark(#4a4a48,#b9b5ad);--mute:light-dark(#7d7a74,#8d8a85);--rule:light-dark(rgba(200,169,110,.35),rgba(200,169,110,.25));--paper:light-dark(#efece5,#171614);--gold:#C8A96E;--gold2:light-dark(#8a6a32,#C8A96E);--black:#0A0A0A;--k1:#c0432f;--k2:#e0812f;--k3:#e2b04a;--k4:#7d9a5b;--k5:#3d6a8e;--k6:#6e4466;--k7:#d99a86;--graph:#2C2C2C;--red:#c8102e}
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
 html{scroll-behavior:smooth;scroll-padding-top:80px}
@@ -73,6 +74,8 @@ header.solid{background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-ba
 .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(10,10,10,.5),rgba(10,10,10,.22) 40%,rgba(10,10,10,.68))}
 .hero-in{position:relative;padding:0 20px}
 .hero .eyebrow{color:var(--gold)}
+.dc .reg{color:var(--rc,var(--gold))}
+.ov small{color:var(--rc,var(--gold))}
 .hero h1{font-size:clamp(60px,9vw,128px);font-weight:700;line-height:.95;letter-spacing:-.02em}
 .rule{width:80px;height:1px;background:var(--gold);margin:30px auto}
 .hero p{font-weight:300;color:rgba(255,255,255,.8);letter-spacing:.04em;max-width:430px;margin:0 auto;font-size:16px}
@@ -243,6 +246,25 @@ header.solid{background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-ba
 .gal figcaption b{font:400 18px "Playfair Display",serif}
 .l1{grid-column:1/span 7}.l2{grid-column:9/span 4;margin-top:18%}.l3{grid-column:2/span 5}.l4{grid-column:8/span 5;margin-top:-6%}.l5{grid-column:1/span 12}.l6{grid-column:4/span 6}
 .l1 .plate{aspect-ratio:3/2}.l2 .plate,.l3 .plate{aspect-ratio:4/5}.l4 .plate{aspect-ratio:1/1}.l6 .plate{aspect-ratio:5/4}.l5 .plate{aspect-ratio:21/9}
+/* jazz + Klee accents */
+.klee{display:grid;grid-template-columns:repeat(var(--c,48),minmax(0,1fr));grid-auto-rows:11px;gap:2px;padding:2px;background:var(--bg)}
+.klee i{display:block}
+.dk+.klee,.klee.dkb{background:var(--black)}
+.staff{display:block;color:var(--gold)}
+.staff svg{display:block;width:100%;height:auto;overflow:visible}
+.hero .staff{width:170px;margin:26px auto}
+.intro .staff{width:min(300px,70%);margin:6px auto 26px;color:var(--gold2)}
+.dark .staff{width:100%;max-width:420px;margin-bottom:26px;color:#8d8a85}
+footer .staff{width:220px;color:rgba(255,255,255,.35)}
+.book.vinyl .obj{aspect-ratio:1/1;margin-right:18%}
+.book.vinyl .cover{padding:10%}
+.book.vinyl .obj::before{display:none}
+.rec{position:absolute;top:4%;bottom:4%;right:-20%;aspect-ratio:1/1;border-radius:50%;background:repeating-radial-gradient(circle,#111 0 2px,#1d1d1d 2px 4px);box-shadow:0 0 0 1px #000;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.rec::after{content:"";position:absolute;inset:34%;border-radius:50%;background:var(--k1);box-shadow:inset 0 0 0 6px var(--k3)}
+.rec::before{content:"";position:absolute;inset:48%;border-radius:50%;background:var(--bg);z-index:1}
+.book.vinyl:hover .rec,.book.vinyl:focus-visible .rec{transform:translateX(14%) rotate(160deg)}
+.cover .kq{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;margin-top:auto;margin-bottom:10%}
+.cover .kq i{aspect-ratio:1/1}
 /* footer (June) */
 footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 .ft{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:24px}
@@ -288,16 +310,18 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
   <div class="hero-in">
     <p class="eyebrow">Fotografía de viaje · fotofilia.es</p>
     <h1>Foto<em>filia</em></h1>
-    <div class="rule"></div>
+    <span class="staff" data-staff="gold" data-n="4" data-seed="3" aria-hidden="true"></span>
     <p>El mundo visto a través del objetivo. Viajes, luz y la búsqueda de lo auténtico.</p>
   </div>
   <div class="hero-cap"><div>Lámina I · Valle de la Luna, Atacama</div><span class="exif"><span>24 mm</span><span>f/11</span><span>1/125 s</span><span>ISO 100</span></span></div>
   <button class="scroll" id="explore" aria-label="Explorar la galería">Explorar<i></i></button>
 </section>
+<div class="klee" data-seed="5" aria-hidden="true"></div>
 
 <section class="band intro"><div class="wrap rv">
   <p class="eyebrow">El proyecto</p>
   <h2>Cada imagen es un instante que el tiempo no puede borrar</h2>
+  <span class="staff" data-staff="klee" data-n="7" data-seed="11" aria-hidden="true"></span>
   <p class="lead">Fotofilia nace de la convicción de que fotografiar es una forma de conocimiento. No se trata solo de capturar lugares, sino de comprender cómo la luz transforma el mundo y cómo el mundo transforma al viajero.</p>
   <div class="meta" id="meta"></div>
 </div></section>
@@ -344,11 +368,11 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 
 <section class="band dark"><div class="wrap g">
   <div class="plate" data-src="main:7" data-k="noche" role="button" tabindex="0" aria-label="Ver Cielo austral"></div>
-  <blockquote class="rv">Una fotografía no enseña un lugar. Enseña cómo lo miraste, y por qué merece la pena que siga ahí.<cite>Lámina VIII · Cielo austral, Atacama · 2026</cite></blockquote>
+  <blockquote class="rv"><span class="staff" data-staff="klee" data-n="9" data-seed="21" aria-hidden="true"></span>Una fotografía no enseña un lugar. Enseña cómo lo miraste, y por qué merece la pena que siga ahí.<cite>Lámina VIII · Cielo austral, Atacama · 2026</cite></blockquote>
 </div></section>
 
 <section class="band" id="blog"><div class="wrap">
-  <div class="shead rv"><h2>Última entrada</h2><span class="lbl">Cuaderno de viaje</span></div>
+  <div class="shead rv"><h2>Última entrada</h2><span class="lbl">Notas de la sesión</span></div>
   <div class="g post rv">
     <div class="mat"><div class="plate" data-src="main:1" data-k="sabana2" role="button" tabindex="0" aria-label="Ver Manada"></div></div>
     <div class="txt">
@@ -428,9 +452,10 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 </div></section>
 </main>
 
+<div class="klee dkb" data-seed="9" aria-hidden="true"></div>
 <footer>
   <div class="wrap">
-    <div class="ft"><span class="wm">Foto<em>filia</em></span><nav aria-label="Pie"><a href="#galeria">Galería</a><a href="#destinos">Destinos</a><a href="#blanco-y-negro">Blanco y negro</a><a href="#leica">Leica</a><a href="#sobre">Sobre mí</a></nav></div>
+    <div class="ft"><span class="wm">Foto<em>filia</em></span><span class="staff" data-staff="gold" data-n="6" data-seed="31" aria-hidden="true"></span><nav aria-label="Pie"><a href="#galeria">Galería</a><a href="#destinos">Destinos</a><a href="#blanco-y-negro">Blanco y negro</a><a href="#leica">Leica</a><a href="#sobre">Sobre mí</a></nav></div>
     <div class="fb"><span>© 2026 Asensio Navarro Ortega · fotofilia.es · Todos los derechos reservados</span><div class="soc"><a href="https://www.instagram.com/" title="Instagram">IG</a><a href="https://500px.com/" title="500px">5×</a><a href="https://www.flickr.com/" title="Flickr">FL</a></div></div>
   </div>
 </footer>
@@ -481,14 +506,14 @@ const SETS={
 };
 SETS.bn.forEach(p=>p.mono=1);
 const DEST=[
- {n:'África austral',reg:'Mozambique · Sudáfrica · Eswatini',k:'sabana',f:'africa'},
- {n:'Chile y Colombia',reg:'Sudamérica',k:'desierto2',f:'america'},
- {n:'Hlane, Eswatini',reg:'Próximo',k:'montana',soon:1}
+ {n:'África austral',reg:'Mozambique · Sudáfrica · Eswatini',k:'sabana',f:'africa',rc:'#e0812f'},
+ {n:'Chile y Colombia',reg:'Sudamérica',k:'desierto2',f:'america',rc:'#d99a86'},
+ {n:'Hlane, Eswatini',reg:'Próximo',k:'montana',soon:1,rc:'#a7c07f'}
 ];
 const BOOKS=[
- {t:'Lo que queda',d:'África austral · 2026',k:'sabana',c:'#1b1b1b',tx:'#f1eee6',go:'#galeria',f:'africa'},
- {t:'Sed',d:'Chile y Colombia · 2026',k:'desierto2',c:'#e8e3d8',tx:'#1b1b1b',go:'#galeria',f:'america'},
- {t:'Monocromo',d:'Blanco y negro · 2026',k:'noche',c:'#C8A96E',tx:'#0A0A0A',go:'#blanco-y-negro',mono:1}
+ {t:'Lo que queda',d:'África austral · 2026',k:'sabana',c:'#c0432f',tx:'#f6efe6',go:'#galeria',f:'africa'},
+ {t:'Sed',d:'Chile y Colombia · 2026',k:'desierto2',c:'#e2b04a',tx:'#1b1b1b',go:'#galeria',f:'america'},
+ {t:'Monocromo',d:'Sesiones en blanco y negro · 2026',k:'noche',c:'#141414',tx:'#ece9e2',go:'#blanco-y-negro',mono:1,vinyl:1}
 ];
 const GEAR=[
  {n:'Sony A7 II',d:'Formato completo. Cuerpo principal para viaje y retrato.',i:'body'},
@@ -541,19 +566,20 @@ const sheet=set=>{const items=SETS[set],rows=[];for(let i=0;i<items.length;i+=6)
 ['main','bn','leica'].forEach(sheet);
 /* masonry (June) */
 const mas=$('masonry');
-mas.innerHTML=M.map((p,n)=>`<figure class="card" data-r="${p.r}" style="--p:${SLOTS[n]}"><div class="plate" role="button" tabindex="0" data-open="main:${n}" aria-label="Ver ${p.t}, ${p.p}"></div><figcaption class="ov"><small>${p.p}</small><b>${p.t}</b>${exif(p)}</figcaption></figure>`).join('');
+mas.innerHTML=M.map((p,n)=>`<figure class="card" data-r="${p.r}" style="--p:${SLOTS[n]};--rc:${p.r==='africa'?'#e0812f':'#d99a86'}"><div class="plate" role="button" tabindex="0" data-open="main:${n}" aria-label="Ver ${p.t}, ${p.p}"></div><figcaption class="ov"><small>${p.p}</small><b>${p.t}</b>${exif(p)}</figcaption></figure>`).join('');
 mas.querySelectorAll('.plate').forEach((el,n)=>fill(el,M[n],seedOf('main',n)));
 /* tab galleries */
 ['bn','leica'].forEach(set=>{const g=$('gal-'+set),items=SETS[set];g.innerHTML=items.map((p,n)=>`<figure class="${LAY[n%6]}"><div class="mat"><div class="plate" tabindex="0" role="button" data-open="${set}:${n}" aria-label="Ver ${p.t}, ${p.p}"></div></div><figcaption><b>${p.t}</b><span class="lbl">Lámina ${ROMAN(n+1)} · ${p.p}</span>${exif(p)}</figcaption></figure>`).join('');g.querySelectorAll('.plate').forEach((el,n)=>fill(el,items[n],seedOf(set,n)))});
 /* destinations */
-$('dest').innerHTML=DEST.map((d,n)=>{const c=d.f?M.filter(p=>p.r===d.f).length:0;return `<button class="dc" data-d="${n}" aria-label="${d.n}"><div class="plate"></div><div class="info"><div class="reg">${d.reg}</div><h3>${d.n}</h3><div class="cnt">${d.soon?'En preparación':c+' láminas'}</div></div><span class="arr" aria-hidden="true">→</span></button>`}).join('');
+$('dest').innerHTML=DEST.map((d,n)=>{const c=d.f?M.filter(p=>p.r===d.f).length:0;return `<button class="dc" data-d="${n}" aria-label="${d.n}" style="--rc:${d.rc}"><div class="plate"></div><div class="info"><div class="reg">${d.reg}</div><h3>${d.n}</h3><div class="cnt">${d.soon?'En preparación':c+' láminas'}</div></div><span class="arr" aria-hidden="true">→</span></button>`}).join('');
 $('dest').querySelectorAll('.dc').forEach((el,n)=>{const d=DEST[n];fill(el.querySelector('.plate'),{k:d.k,t:d.n,p:''},120+n);el.addEventListener('click',e=>{e.stopPropagation();if(d.f){document.querySelector(`.filters [data-f="${d.f}"]`).click();location.hash='galeria';$('galeria').scrollIntoView()}})});
 /* books */
-$('shelf').innerHTML=BOOKS.map(b=>`<button class="book" style="--c:${b.c};--t:${b.tx}"><div class="obj"><div class="cover"><div class="plate"></div><em>${b.t}</em><i>Fotofilia · Asensio Navarro</i></div></div><span class="bt">${b.t}</span><span class="lbl">${b.d}</span></button>`).join('');
+$('shelf').innerHTML=BOOKS.map(b=>b.vinyl?`<button class="book vinyl" style="--c:${b.c};--t:${b.tx}"><div class="obj"><span class="rec" aria-hidden="true"></span><div class="cover"><div class="plate"></div><em>${b.t}</em><i>Fotofilia · Asensio Navarro</i></div></div><span class="bt">${b.t}</span><span class="lbl">${b.d}</span></button>`:`<button class="book" style="--c:${b.c};--t:${b.tx}"><div class="obj"><div class="cover"><div class="plate"></div><em>${b.t}</em><i>Fotofilia · Asensio Navarro</i></div></div><span class="bt">${b.t}</span><span class="lbl">${b.d}</span></button>`).join('');
 $('shelf').querySelectorAll('.book').forEach((el,n)=>{const b=BOOKS[n];fill(el.querySelector('.plate'),{k:b.k,mono:b.mono,t:b.t,p:''},90+n);el.addEventListener('click',e=>{e.stopPropagation();if(b.f)document.querySelector(`.filters [data-f="${b.f}"]`).click();if(location.hash===b.go)$(b.go.slice(1))?.scrollIntoView();else location.hash=b.go})});
 /* gear icons, drawn */
 const ICON={body:'<svg viewBox="0 0 60 34"><rect x="2" y="6" width="56" height="26" rx="3" fill="none" stroke="#C8A96E" stroke-width="1.5"/><rect x="8" y="2" width="12" height="5" fill="#C8A96E"/><circle cx="30" cy="19" r="9" fill="none" stroke="#C8A96E" stroke-width="1.5"/><circle cx="30" cy="19" r="4" fill="#C8A96E" opacity=".5"/></svg>',zoom:'<svg viewBox="0 0 80 34"><rect x="2" y="9" width="6" height="16" fill="#C8A96E"/><rect x="8" y="4" width="68" height="26" rx="2" fill="none" stroke="#C8A96E" stroke-width="1.5"/><path d="M30 4v26M38 4v26M58 4v26" stroke="#C8A96E" stroke-width="1"/></svg>',tele:'<svg viewBox="0 0 110 34"><rect x="2" y="9" width="6" height="16" fill="#C8A96E"/><rect x="8" y="6" width="98" height="22" rx="2" fill="none" stroke="#C8A96E" stroke-width="1.5"/><path d="M40 6v22M48 6v22M80 6v22" stroke="#C8A96E" stroke-width="1"/></svg>',prime:'<svg viewBox="0 0 40 34"><rect x="2" y="9" width="6" height="16" fill="#C8A96E"/><rect x="8" y="5" width="28" height="24" rx="2" fill="none" stroke="#C8A96E" stroke-width="1.5"/><path d="M18 5v24M24 5v24" stroke="#C8A96E" stroke-width="1"/></svg>',small:'<svg viewBox="0 0 48 34"><rect x="2" y="8" width="44" height="22" rx="3" fill="none" stroke="#C8A96E" stroke-width="1.5"/><circle cx="18" cy="19" r="7" fill="none" stroke="#C8A96E" stroke-width="1.5"/></svg>'};
-$('glist').innerHTML=GEAR.map(g=>`<div class="gi">${ICON[g.i]}<b>${g.n}</b><span>${g.d}</span></div>`).join('');
+const KP=['#c0432f','#e0812f','#e2b04a','#7d9a5b','#5d8bb3','#a0688f','#d99a86'];
+$('glist').innerHTML=GEAR.map((g,n)=>`<div class="gi">${ICON[g.i].replaceAll('#C8A96E',KP[n%KP.length])}<b>${g.n}</b><span>${g.d}</span></div>`).join('');
 /* lenses drawn in approximate proportion */
 const LENS=[{n:'Summicron-M 35 mm',L:34,D:53,c:'#1c1c1c'},{n:'Summicron-M 50 mm',L:44,D:53,c:'#1c1c1c'},{n:'Sony FE 24–105 mm f/4 G',L:113,D:83,c:'#262626'},{n:'Canon 70–200 mm f/2.8 IS II',L:199,D:89,c:'#e9e6de',light:1}];
 {const sc=3.3,x0=60;let y=20,s='';LENS.forEach(o=>{const w=o.L*sc,h=o.D*sc*.55,yc=y+h/2;s+=`<rect x="${x0-10}" y="${yc-h*.36}" width="12" height="${h*.72}" fill="#8f8f8f"/><rect x="${x0}" y="${yc-h/2}" width="${w}" height="${h}" rx="3" fill="${o.c}" stroke="#000" stroke-opacity=".3"/>`;for(let j=0;j<Math.round(w/9);j++)if(j%5<2)s+=`<rect x="${(x0+w*.35+j*3).toFixed(1)}" y="${yc-h/2}" width="1.5" height="${h}" fill="${o.light?'#c9c4b9':'#3a3a3a'}"/>`;s+=`<rect x="${x0+w-6}" y="${yc-h/2-2}" width="6" height="${h+4}" fill="${o.light?'#d8d3c8':'#111'}"/><rect x="${x0+w*.12}" y="${yc-h/2}" width="${Math.max(6,w*.1)}" height="2" fill="#C8A96E"/><text x="${x0+w+18}" y="${yc+5}" class="nm">${o.n}</text>`;y+=h+16});
@@ -581,6 +607,19 @@ document.addEventListener('click',e=>{const t=e.target.closest('[data-open],[dat
 document.addEventListener('keydown',e=>{if(lb.classList.contains('on')){if(e.key==='Escape')close();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1);return}const t=e.target.closest&&e.target.closest('.plate[role=button]');if(t&&(e.key==='Enter'||e.key===' ')){e.preventDefault();const x=tgt(t);if(x)open(...x)}});
 $('prev').onclick=()=>step(-1);$('next').onclick=()=>step(1);$('close').onclick=close;
 $('explore').onclick=()=>$('galeria').scrollIntoView();
+/* staves with notes (jazz) and Klee magic-square strips */
+const staff=(n,mode,seed)=>{const r=rnd(seed*131+7),W=300,g=7,cols=['#c0432f','#e0812f','#e2b04a','#7d9a5b','#3d6a8e','#6e4466','#d99a86'];let s='';
+ for(let i=0;i<5;i++)s+=`<line x1="0" x2="${W}" y1="${g*(5+i)}" y2="${g*(5+i)}" stroke="currentColor" stroke-opacity=".45" stroke-width=".8"/>`;
+ const pts=[];for(let j=0;j<n;j++){const x=W*(j+.7)/(n+.4),y=g*4.5+Math.floor(r()*9)*g/2,c=mode==='klee'?cols[j%7]:'currentColor';pts.push([x,y,c])}
+ pts.forEach(([x,y,c],j)=>{const sx=x+g*.55,top=y-g*3.3;s+=`<ellipse cx="${x.toFixed(1)}" cy="${y}" rx="${g*.62}" ry="${g*.44}" transform="rotate(-22 ${x.toFixed(1)} ${y})" fill="${c}"/><line x1="${sx.toFixed(1)}" x2="${sx.toFixed(1)}" y1="${y}" y2="${top}" stroke="${c}" stroke-width="1.2"/>`;
+  const nx=pts[j+1];if(j%2===0&&nx){const nsx=nx[0]+g*.55,ntop=nx[1]-g*3.3,t=Math.min(top,ntop);s=s.replace(new RegExp(`y2="${top}"([^>]*)/>$`),`y2="${t}"$1/>`);s+=`<path d="M${sx.toFixed(1)} ${t}L${nsx.toFixed(1)} ${t}" stroke="${c}" stroke-width="3"/>`;pts[j+1]=[nx[0],nx[1],nx[2],t]}
+  else if(pts[j][3]!==undefined){s=s.replace(new RegExp(`y2="${top}"([^>]*)/>$`),`y2="${pts[j][3]}"$1/>`)}
+  else s+=`<path d="M${sx.toFixed(1)} ${top}q${g*.9} ${g*.8} ${g*.5} ${g*1.9}" fill="none" stroke="${c}" stroke-width="1.2"/>`});
+ return `<svg viewBox="0 0 ${W} ${g*10.5}" aria-hidden="true">${s}</svg>`};
+document.querySelectorAll('[data-staff]').forEach(el=>el.innerHTML=staff(+el.dataset.n||5,el.dataset.staff,+el.dataset.seed||1));
+const KLEE=['#c0432f','#e0812f','#e2b04a','#7d9a5b','#3d6a8e','#6e4466','#d99a86','#C8A96E'];
+document.querySelectorAll('.klee').forEach(el=>{const r=rnd((+el.dataset.seed||1)*977),c=48;el.style.setProperty('--c',c);el.innerHTML=Array.from({length:c*2},()=>`<i style="background:${KLEE[Math.floor(r()*KLEE.length)]};opacity:${(.55+r()*.45).toFixed(2)}"></i>`).join('')});
+document.querySelectorAll('.book.vinyl .cover').forEach(cv=>{const r=rnd(55);cv.querySelector('.plate').insertAdjacentHTML('afterend',`<span class="kq" aria-hidden="true">${Array.from({length:6},()=>`<i style="background:${KLEE[Math.floor(r()*7)]}"></i>`).join('')}</span>`)});
 /* newsletter (sample) */
 $('sub').addEventListener('submit',e=>{e.preventDefault();$('ok').textContent='Gracias. Formulario de muestra: se conectará al publicar la web.';e.target.reset()});
 /* nav + parallax (June) */
