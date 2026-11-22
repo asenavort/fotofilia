@@ -9,7 +9,7 @@ let filtered=null;
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Caveat:wght@500;700&family=Noto+Music&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Caveat:wght@500;700&family=Noto+Music&family=Abril+Fatface&display=swap" rel="stylesheet">
 <style>
 /* VOICE the June site (cream, gold, Playfair, full-bleed hero, black bands) carried by today's monograph ideas
    IDEA the photographer's table: f/ mark, plates with exposure labels, colour negatives, contact sheets with red grease pencil, photobooks, lenses to scale, a working iris
@@ -275,17 +275,63 @@ header.solid{background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-ba
 .play i{width:0;height:0;border-left:11px solid currentColor;border-top:7px solid transparent;border-bottom:7px solid transparent}
 .play[aria-pressed=true] i{width:11px;height:12px;border:0;border-left:4px solid currentColor;border-right:4px solid currentColor}
 document.querySelectorAll('[data-ph]').forEach(el=>fill(el,{k:el.dataset.k,t:'',p:''},150+(+el.dataset.ph)));
-/* folders */
-.folders{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:clamp(16px,2.4vw,32px)}
-.fold{position:relative;display:block;text-decoration:none;color:inherit;padding-top:22px}
-.fold .bk{position:absolute;inset:22px 0 0;background:color-mix(in srgb,var(--fc) 82%,#000);border-radius:2px 6px 4px 4px}
-.fold .bk::before{content:"";position:absolute;left:0;top:-20px;width:46%;height:22px;background:inherit;border-radius:6px 10px 0 0;clip-path:polygon(0 0,86% 0,100% 100%,0 100%)}
-.fold .plate{position:relative;margin:0 8% ;aspect-ratio:4/3;transform:translateY(8px);transition:transform .5s cubic-bezier(.2,.7,.2,1);box-shadow:0 6px 18px rgba(0,0,0,.25)}
-.fold:hover .plate,.fold:focus-visible .plate{transform:translateY(-10px) rotate(-1.5deg)}
-.fold .fr2{position:relative;margin-top:-34%;height:58%;min-height:120px;background:var(--fc);border-radius:2px 2px 4px 4px;padding:16px 16px 18px;display:flex;flex-direction:column;justify-content:flex-end;color:var(--ft);box-shadow:0 -1px 0 rgba(255,255,255,.15) inset}
-.fold b{font:600 21px/1.15 "Playfair Display",serif}
-.fold small{font-size:12px;opacity:.8;margin-top:4px}
-.fold:focus-visible{outline:2px solid var(--gold);outline-offset:6px}
+/* folders as 35 mm slide mounts */
+.folders{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:clamp(18px,2.6vw,34px)}
+.fold{display:block;text-decoration:none;color:#2a2622;background:#f4f1ea;border-radius:10px;padding:14% 13% 0;aspect-ratio:1/1.08;position:relative;box-shadow:0 1px 0 #fff inset,0 10px 24px -14px rgba(0,0,0,.45);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.fold:hover,.fold:focus-visible{transform:translateY(-6px) rotate(-1deg)}
+.fold:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.fold .plate{aspect-ratio:3/2;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
+.fold .lab{display:block;font:700 22px/1.1 Caveat,cursive;margin-top:10%}
+.fold small{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8a837a;margin-top:2px}
+.fold .dot{position:absolute;top:6%;right:7%;width:16px;height:16px;border-radius:50%;background:var(--fc)}
+.fold .no{position:absolute;top:6%;left:9%;font-size:10px;letter-spacing:.14em;color:#a49c92}
+/* night session: jazz & soul */
+.night{--nb:#0d0a09;--na:#e8a33d;--nr:#7a1f2b;--nc:#f3e9d8;background:var(--nb);color:var(--nc)}
+.nx-hero{position:relative;min-height:min(92svh,820px);display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.nx-photo{position:absolute;inset:0;z-index:-2}
+.nx-photo>img,.nx-photo>svg{filter:grayscale(1) contrast(1.25) brightness(.7)}
+.nx-photo::after{background:linear-gradient(180deg,rgba(13,10,9,.2),rgba(13,10,9,.95)),radial-gradient(60% 70% at 70% 30%,rgba(232,163,61,.55),transparent 70%),linear-gradient(90deg,rgba(122,31,43,.55),rgba(122,31,43,0));mix-blend-mode:normal;opacity:1}
+.nx-smoke{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.nx-smoke i{position:absolute;width:60vw;height:40vh;border-radius:50%;background:radial-gradient(closest-side,rgba(243,233,216,.10),transparent);filter:blur(30px)}
+.nx-smoke i:nth-child(1){left:-10vw;top:20%}.nx-smoke i:nth-child(2){right:-15vw;top:5%;width:70vw}.nx-smoke i:nth-child(3){left:30vw;bottom:-10%}
+@media(prefers-reduced-motion:no-preference){.nx-smoke i{animation:drift 26s ease-in-out infinite alternate}.nx-smoke i:nth-child(2){animation-duration:34s}@keyframes drift{to{transform:translate(6vw,-4vh) scale(1.15)}}}
+.nx-in{padding:0 max(5vw,16px) clamp(40px,7vw,90px);max-width:1200px;margin:0 auto;width:100%}
+.nx-k{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--na);margin:0 0 14px}
+.night h1{font:400 clamp(58px,10vw,138px)/.9 "Abril Fatface",serif;letter-spacing:-.01em;color:var(--nc);margin:0 0 22px;text-shadow:0 4px 40px rgba(0,0,0,.6)}
+.night h1 em{font-style:italic;font-family:"Playfair Display",serif;font-weight:400;color:var(--na)}
+.nx-in>p:last-child{max-width:52ch;font-size:17px;font-weight:300;color:rgba(243,233,216,.82)}
+.nx-band{padding:clamp(56px,8vw,110px) max(5vw,16px);background:radial-gradient(80% 60% at 20% 0%,rgba(122,31,43,.28),transparent 70%),var(--nb)}
+.nx-player{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,80px);align-items:center}
+.nx-tt svg{width:100%;max-width:440px;display:block;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+#disc{transform-origin:140px 150px}
+.spin #disc{animation:spin 1.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.night h2{font:400 clamp(34px,4.2vw,56px)/1.02 "Abril Fatface",serif;color:var(--nc);margin:0 0 16px}
+.nx-tx p{color:rgba(243,233,216,.75);font-weight:300;max-width:46ch}
+.nx-play{display:inline-flex;align-items:center;gap:12px;margin-top:18px;font:600 12px Inter,sans-serif;letter-spacing:.18em;text-transform:uppercase;background:var(--na);color:#160f0a;border:0;border-radius:999px;padding:0 26px;min-height:50px;cursor:pointer}
+.nx-play:hover{background:#f3b956}
+.nx-play:focus-visible{outline:2px solid var(--nc);outline-offset:3px}
+.nx-play i{width:0;height:0;border-left:11px solid currentColor;border-top:7px solid transparent;border-bottom:7px solid transparent}
+.nx-play[aria-pressed=true] i{width:11px;height:12px;border:0;border-left:4px solid currentColor;border-right:4px solid currentColor}
+.nx-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid rgba(232,163,61,.3);padding-bottom:14px;margin-bottom:40px}
+.nx-h span{font-size:13px;color:rgba(243,233,216,.6)}
+.nx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:clamp(28px,4vw,56px) clamp(20px,3vw,40px)}
+.rec2{position:relative;padding-right:16%}
+.rec2 .sl{position:relative;z-index:1;aspect-ratio:1/1;box-shadow:0 18px 30px -12px rgba(0,0,0,.8)}
+.rec2 .sl>img,.rec2 .sl>svg{filter:grayscale(1) contrast(1.2) brightness(.9)}
+.rec2 .sl::after{background:linear-gradient(135deg,rgba(122,31,43,.65),rgba(232,163,61,.35));mix-blend-mode:color;opacity:1}
+.rec2 .vy{position:absolute;top:4%;right:0;width:88%;aspect-ratio:1/1;border-radius:50%;background:repeating-radial-gradient(circle,#0b0b0b 0 2px,#171717 2px 4px);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.rec2 .vy::after{content:"";position:absolute;inset:35%;border-radius:50%;background:var(--lc,#7a1f2b);box-shadow:inset 0 0 0 5px rgba(232,163,61,.7)}
+.rec2:hover .vy{transform:translateX(10%) rotate(120deg)}
+.rec2 h3{font:400 24px/1.1 "Abril Fatface",serif;color:var(--nc);margin:18px 0 4px}
+.rec2 .who{font-size:14px;color:var(--na)}
+.rec2 p{font-size:14px;color:rgba(243,233,216,.7);font-weight:300;margin:8px 0 0}
+.rec2 .ph{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,233,216,.45);margin-top:10px;display:block}
+.nx-note{font-size:13px;color:rgba(243,233,216,.5);margin-top:36px}
+html.is-night body{background:#0d0a09}
+html.is-night #contacto{background:#0d0a09;color:var(--nc,#f3e9d8)}
+html.is-night #contacto h2,html.is-night #contacto .mail{color:#f3e9d8}
+@media(max-width:900px){.nx-player{grid-template-columns:minmax(0,1fr)}.nx-tt svg{margin:0 auto}}
 /* pairings */
 .pair{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(12px,2vw,28px);row-gap:20px;align-items:center;padding-block:clamp(28px,4vw,48px);border-top:1px solid var(--rule)}
 .pair .mat{grid-column:1/span 5}
@@ -424,7 +470,7 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 
 <section class="band dark"><div class="wrap g">
   <div class="plate" data-src="main:3" data-k="noche" role="button" tabindex="0" aria-label="Ver Último sol sobre la sabana"></div>
-  <blockquote class="rv"><span class="ls ls-dark" data-ls="4" aria-hidden="true"></span>Una fotografía no enseña un lugar. Enseña cómo lo miraste, y por qué merece la pena que siga ahí.<cite>Lámina IV · Último sol sobre la sabana · Sudáfrica y Esuatini, 2026</cite></blockquote>
+  <blockquote class="rv">Una fotografía no enseña un lugar. Enseña cómo lo miraste, y por qué merece la pena que siga ahí.<cite>Lámina IV · Último sol sobre la sabana · Sudáfrica y Esuatini, 2026</cite></blockquote>
 </div></section>
 
 <section class="band" id="blog"><div class="wrap">
@@ -498,25 +544,29 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 </div>
 
 <!-- ================= MÚSICA Y FOTOGRAFÍA ================= -->
-<div class="view" id="v-musica-y-fotografia" hidden>
-<section class="band thero"><div class="wrap g">
-  <div class="mat"><div class="plate" data-src="main:6" data-k="noche" role="button" tabindex="0" aria-label="Ver Flamenco"></div></div>
-  <aside>
-    <p class="eyebrow">Carpeta</p>
-    <h1>Música <em>y fotografía</em></h1>
-    <p>Fotografiar también es una cuestión de ritmo: el tempo de un viaje, el silencio entre dos disparos, la improvisación ante una luz que no vuelve. Cada lámina, con la pieza de jazz que la acompaña.</p>
-  </aside>
+<div class="view night" id="v-musica-y-fotografia" hidden>
+<section class="nx-hero">
+  <div class="nx-photo plate" data-src="main:3" data-k="ciudad" role="button" tabindex="0" aria-label="Ver Último sol sobre la sabana"></div>
+  <div class="nx-smoke" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="nx-in">
+    <p class="nx-k">Carpeta · Sesión nocturna</p>
+    <h1>Música<br><em>y fotografía</em></h1>
+    <p>Jazz, soul y blues para mirar despacio. La raíz negra de la música del siglo XX junto a la luz de África y de los Andes: cada lámina, con la pieza que la acompaña.</p>
+  </div>
+</section>
+<section class="nx-band"><div class="wrap nx-player">
+  <div class="nx-tt" aria-hidden="true"><svg viewBox="0 0 300 300"><defs><radialGradient id="vg"><stop offset=".27" stop-color="#7a1f2b"/><stop offset=".28" stop-color="#111"/><stop offset="1" stop-color="#050505"/></radialGradient></defs><rect x="6" y="6" width="288" height="288" rx="10" fill="#1a1411" stroke="#3a2a20"/><g id="disc"><circle cx="140" cy="150" r="118" fill="url(#vg)"/><g fill="none" stroke="#222" stroke-width=".8"><circle cx="140" cy="150" r="40"/><circle cx="140" cy="150" r="45"/><circle cx="140" cy="150" r="50"/><circle cx="140" cy="150" r="55"/><circle cx="140" cy="150" r="60"/><circle cx="140" cy="150" r="65"/><circle cx="140" cy="150" r="70"/><circle cx="140" cy="150" r="75"/><circle cx="140" cy="150" r="80"/><circle cx="140" cy="150" r="85"/><circle cx="140" cy="150" r="90"/><circle cx="140" cy="150" r="95"/><circle cx="140" cy="150" r="100"/><circle cx="140" cy="150" r="105"/><circle cx="140" cy="150" r="110"/><circle cx="140" cy="150" r="115"/></g><circle cx="140" cy="150" r="32" fill="#7a1f2b"/><circle cx="140" cy="150" r="32" fill="none" stroke="#e8a33d" stroke-width="1.5"/><text x="140" y="146" text-anchor="middle" font-family="Abril Fatface,serif" font-size="11" fill="#f3e9d8">FOTOFILIA</text><text x="140" y="160" text-anchor="middle" font-family="Inter,sans-serif" font-size="6.5" fill="#e8a33d">BLUES EN FA · 33⅓</text><circle cx="140" cy="150" r="3" fill="#111"/><path d="M60 150a80 80 0 0 1 80-80" stroke="rgba(255,255,255,.08)" stroke-width="18" fill="none"/></g><g><circle cx="262" cy="46" r="12" fill="#2a201a" stroke="#c8a96e"/><path d="M262 46L250 196L214 226" stroke="#c8a96e" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="204" y="218" width="20" height="13" rx="2" fill="#c8a96e" transform="rotate(-38 214 224)"/></g></svg></div>
+  <div class="nx-tx">
+    <p class="nx-k">Cara A</p>
+    <h2>Blues de medianoche</h2>
+    <p>Doce compases de blues en Fa: contrabajo caminando, piano en los tiempos dos y cuatro y el platillo con swing, sonando en el propio navegador.</p>
+    <button class="nx-play" id="play" aria-pressed="false"><i aria-hidden="true"></i><span>Escuchar la progresión</span></button>
+  </div>
 </div></section>
-<section class="band" style="padding-top:0"><div class="wrap">
-  <div class="shead"><h2>Blues en Fa</h2><span class="lbl">La progresión de blues del jazz, doce compases</span></div>
-  <div class="chart"><span class="ls" id="lsFull" data-ls="12" aria-label="Partitura: blues de jazz en Fa, doce compases con cifrado"></span></div>
-  <button class="play" id="play" aria-pressed="false"><i aria-hidden="true"></i><span>Escuchar la progresión</span></button>
-  <p class="note" style="margin-top:14px">Contrabajo caminando, piano en los tiempos dos y cuatro y platillo con swing, generados en el propio navegador.</p>
-</div></section>
-<section class="band" style="padding-top:0"><div class="wrap">
-  <div class="shead"><h2>Maridajes sonoros</h2><span class="lbl">Una lámina, una pieza</span></div>
-  <div id="pairs-music"></div>
-  <p class="note">Maridajes propuestos para la maqueta; el autor elegirá los definitivos.</p>
+<section class="nx-band nx-set"><div class="wrap">
+  <div class="nx-h"><h2>Esta noche suena</h2><span>Una lámina, una pieza</span></div>
+  <div class="nx-grid" id="pairs-music"></div>
+  <p class="nx-note">Maridajes propuestos para la maqueta; el autor elegirá los definitivos.</p>
 </div></section>
 </div>
 
@@ -777,10 +827,11 @@ const KLEE=['#c0432f','#e0812f','#e2b04a','#7d9a5b','#3d6a8e','#6e4466','#d99a86
 document.querySelectorAll('.klee').forEach(el=>{const r=rnd((+el.dataset.seed||1)*977),c=48;el.style.setProperty('--c',c);el.innerHTML=Array.from({length:c*2},()=>`<i style="background:${KLEE[Math.floor(r()*KLEE.length)]};opacity:${(.55+r()*.45).toFixed(2)}"></i>`).join('')});
 document.querySelectorAll('.book.vinyl .cover').forEach(cv=>{const r=rnd(55);cv.querySelector('.plate').insertAdjacentHTML('afterend',`<span class="kq" aria-hidden="true">${Array.from({length:6},()=>`<i style="background:${KLEE[Math.floor(r()*7)]}"></i>`).join('')}</span>`)});
 /* folders */
-$('folders').innerHTML=FOLDERS.map(f=>`<a class="fold" href="#${f.go}" style="--fc:${f.fc};--ft:${f.ft}"><span class="bk"></span><div class="plate"></div><div class="fr2"><b>${f.t}</b><small>${f.d}</small></div></a>`).join('');
+$('folders').innerHTML=FOLDERS.map((f,n)=>`<a class="fold" href="#${f.go}" style="--fc:${f.fc}"><span class="no">FOTOFILIA · ${String(n+1).padStart(2,'0')}</span><span class="dot" aria-hidden="true"></span><div class="plate"></div><span class="lab">${f.t}</span><small>${f.d}</small></a>`).join('');
 $('folders').querySelectorAll('.fold .plate').forEach((el,n)=>{const f=FOLDERS[n];if(f.src){const [st,i]=f.src;fill(el,SETS[st][i],seedOf(st,i))}else fill(el,{k:f.k,t:f.t,p:''},140+n)});
 /* pairings */
-$('pairs-music').innerHTML=MUSIC.map(x=>{const p=M[x.i];return `<article class="pair"><div class="mat"><div class="plate" role="button" tabindex="0" data-open="main:${x.i}" aria-label="Ver ${p.t}"></div></div><div class="tx"><p class="eyebrow">${p.t} · ${p.p}</p><h3>${x.t}</h3><div class="who">${x.a} · <em>${x.al}</em>, ${x.y}</div><p>${x.m}</p></div></article>`}).join('');
+const LC=['#7a1f2b','#e8a33d','#2e4a6b','#5b2a4e','#a3542a','#1f3b33'];
+$('pairs-music').innerHTML=MUSIC.map((x,k)=>{const p=M[x.i];return `<article class="rec2" style="--lc:${LC[k%LC.length]}"><span class="vy" aria-hidden="true"></span><div class="sl plate" role="button" tabindex="0" data-open="main:${x.i}" aria-label="Ver ${p.t}"></div><h3>${x.t}</h3><div class="who">${x.a} · ${x.y}</div><p>${x.m}</p><span class="ph">${x.al} · con ${p.t}</span></article>`}).join('');
 $('pairs-wine').innerHTML=WINE.map(x=>{const p=M[x.i];return `<article class="pair"><div class="mat"><div class="plate" role="button" tabindex="0" data-open="main:${x.i}" aria-label="Ver ${p.t}"></div></div><div class="tx"><div class="chip" style="--w:${x.w}"><i aria-hidden="true"></i><span>${x.c}</span></div><h3>${x.v}</h3><div class="who">${x.r} · con <em>${p.t}</em></div><p>${x.m}</p></div></article>`}).join('');
 document.querySelectorAll('#pairs-music .plate,#pairs-wine .plate').forEach(el=>{const i=+el.dataset.open.split(':')[1];fill(el,M[i],seedOf('main',i))});
 /* lead sheet: jazz blues in F, Real Book style */
@@ -806,9 +857,9 @@ document.querySelectorAll('[data-ls]').forEach(el=>{const nb=+el.dataset.ls;el.i
  let ctx=null,timer=null,playing=false;const btn=$('play');
  const tone=(t,m,d,g,type='triangle')=>{const o=ctx.createOscillator(),a=ctx.createGain();o.type=type;o.frequency.value=hz(m);a.gain.setValueAtTime(0,t);a.gain.linearRampToValueAtTime(g,t+.012);a.gain.exponentialRampToValueAtTime(.0008,t+d);o.connect(a).connect(ctx.destination);o.start(t);o.stop(t+d+.05)};
  const ride=(t,g)=>{const n=ctx.createBufferSource(),b=ctx.createBuffer(1,ctx.sampleRate*.25,ctx.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.exp(-i/(ctx.sampleRate*.06));n.buffer=b;const f=ctx.createBiquadFilter();f.type='highpass';f.frequency.value=7000;const a=ctx.createGain();a.gain.value=g;n.connect(f).connect(a).connect(ctx.destination);n.start(t)};
- const stop=()=>{playing=false;clearTimeout(timer);btn.setAttribute('aria-pressed','false');btn.querySelector('span').textContent='Escuchar la progresión';document.querySelectorAll('.hb.on').forEach(h=>h.classList.remove('on'))};
+ const stop=()=>{playing=false;clearTimeout(timer);btn.setAttribute('aria-pressed','false');btn.querySelector('span').textContent='Escuchar la progresión';document.querySelector('.nx-tt')?.classList.remove('spin');document.querySelectorAll('.hb.on').forEach(h=>h.classList.remove('on'))};
  const play=()=>{try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();ctx.resume()}catch(e){return}
-  playing=true;btn.setAttribute('aria-pressed','true');btn.querySelector('span').textContent='Detener';
+  playing=true;btn.setAttribute('aria-pressed','true');btn.querySelector('span').textContent='Detener';document.querySelector('.nx-tt')?.classList.add('spin');
   const beat=60/132,t0=ctx.currentTime+.1,sw=beat*2/3;
   BLUES.forEach((bar,n)=>{const bt=t0+n*4*beat,a=parse(bar[0]),b=parse(bar[1]||bar[0]),nx=parse(BLUES[(n+1)%12][0]);
    const bass=[36+a.r,36+a.r+(bar[1]?7:iv(a.q)[0]),36+b.r+(bar[1]?0:7),36+nx.r+(nx.r>b.r?-1:1)].map(m=>m<34?m+12:m);
@@ -830,7 +881,7 @@ if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.fo
 /* tabs via hash */
 const VIEWS=['inicio','blanco-y-negro','leica','musica-y-fotografia','fotografia-y-vino','underlands','europa','asia-y-oriente-medio'];
 const route=()=>{const h=location.hash.slice(1),t=h&&$(h),outside=t&&!t.closest('.view'),v=VIEWS.includes(h)?h:outside?curV:'inicio',changed=v!==curV||!route.done;
- VIEWS.forEach(x=>$('v-'+x).hidden=x!==v);curV=v;route.done=1;
+ VIEWS.forEach(x=>$('v-'+x).hidden=x!==v);curV=v;document.documentElement.classList.toggle('is-night',v==='musica-y-fotografia');route.done=1;
  document.querySelectorAll('.nav nav a').forEach(a=>{a.dataset.v&&a.dataset.v!=='inicio'&&a.dataset.v===v?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
  if(changed&&(VIEWS.includes(h)||!h))scrollTo(0,0);
  if(t&&!VIEWS.includes(h))requestAnimationFrame(()=>t.scrollIntoView());
