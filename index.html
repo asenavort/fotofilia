@@ -1,4 +1,3 @@
-let filtered=null;
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -85,7 +84,20 @@ header.solid{background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-ba
 .hero h1{font-size:clamp(60px,9vw,128px);font-weight:700;line-height:.95;letter-spacing:-.02em}
 .rule{width:80px;height:1px;background:var(--gold);margin:30px auto}
 .hero p{font-weight:300;color:rgba(255,255,255,.8);letter-spacing:.04em;max-width:430px;margin:0 auto;font-size:16px}
-.hero-cap{position:absolute;left:max(4vw,16px);bottom:32px;text-align:left;font-size:13px;color:rgba(255,255,255,.75)}
+.tl{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);width:min(880px,92vw);color:#fff;text-align:center}
+.tl-k{font:500 11px Inter,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.65);margin:0 0 14px}
+.tl ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(var(--n,4),minmax(120px,1fr));position:relative;overflow-x:auto;scrollbar-width:none}
+.tl ol::before{content:"";position:absolute;left:0;right:0;top:7px;height:1px;background:linear-gradient(90deg,transparent,var(--gold) 8%,var(--gold) 92%,transparent)}
+.tl li{position:relative;padding:0 6px}
+.tl a{display:flex;flex-direction:column;align-items:center;gap:4px;color:inherit;text-decoration:none}
+.tl .d{width:15px;height:15px;border-radius:50%;border:1px solid var(--gold);background:rgba(20,16,14,.75);transition:.3s}
+.tl .on .d{background:var(--gold)}
+.tl a:hover .d,.tl a:focus-visible .d{background:#b8202a;border-color:#b8202a;transform:scale(1.25)}
+.tl time{font:500 10px Inter,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:6px}
+.tl b{font:600 15px "Playfair Display",serif;line-height:1.2}
+.tl small{font-size:11px;color:var(--gold)}
+@media(max-width:700px){.tl ol{grid-template-columns:repeat(var(--n,4),132px)}.tl b{font-size:13px}}
+.hero-cap{position:absolute;left:max(4vw,16px);bottom:168px;text-align:left;font-size:13px;color:rgba(255,255,255,.75)}
 .hero-cap .exif{color:rgba(255,255,255,.6)}
 .scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;background:none;border:0;color:rgba(255,255,255,.6);font:500 11px Inter,sans-serif;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;padding:6px}
 .scroll i{width:1px;height:50px;background:linear-gradient(var(--gold),transparent)}
@@ -433,7 +445,7 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
     <p>El mundo visto a través del objetivo. Viajes, luz y la búsqueda de lo auténtico.</p>
   </div>
   <div class="hero-cap" id="heroCap"></div>
-  <button class="scroll" id="explore" aria-label="Explorar la galería">Explorar<i></i></button>
+  <nav class="tl" id="timeline" aria-label="Línea de tiempo de los álbumes"><p class="tl-k">Explorar · cuaderno de viaje</p><ol id="tl-list"></ol></nav>
 </section>
 <div class="klee" data-seed="5" aria-hidden="true"></div>
 
@@ -876,7 +888,14 @@ const tgt=t=>{const s=t.dataset.open||t.dataset.src;if(!s)return null;const [a,b
 document.addEventListener('click',e=>{const t=e.target.closest('[data-open],[data-src]');if(!t||lb.contains(t))return;const x=tgt(t);if(x)open(...x)});
 document.addEventListener('keydown',e=>{if(lb.classList.contains('on')){if(e.key==='Escape')close();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1);return}const t=e.target.closest&&e.target.closest('.plate[role=button]');if(t&&(e.key==='Enter'||e.key===' ')){e.preventDefault();const x=tgt(t);if(x)open(...x)}});
 $('prev').onclick=()=>step(-1);$('next').onclick=()=>step(1);$('close').onclick=close;
-$('explore').onclick=()=>$('galeria').scrollIntoView();
+const TIMELINE=[
+ {t:'Mozambique',s:'Vilankulos, Inhambane y Maputo',d:'2026-06-24',f:'24–27 jun 2026',al:'Vilankulos, Inhambane y Maputo'},
+ {t:'Sudáfrica y Esuatini',s:'Kruger y Esuatini',d:'2026-07-03',f:'3–6 jul 2026',al:'Sudáfrica y Esuatini'},
+ {t:'Atacama',s:'Chile',d:'2026-08-03',f:'3–10 ago 2026',al:'Atacama, Chile'},
+ {t:'Cartagena de Indias',s:'Colombia',d:'2026-08-31',f:'31 ago – 1 sep 2026',al:'Cartagena, Colombia'}
+].sort((a,b)=>a.d<b.d?-1:1);
+$('tl-list').style.setProperty('--n',TIMELINE.length);
+$('tl-list').innerHTML=TIMELINE.map(x=>{const pg=ALBUMS[slug(x.al)],n=pg?SETS[pg].length:SETS.main.filter(p=>p.al===x.al).length;return `<li class="${pg?'on':''}"><a href="${pg?'#'+slug(x.al):'#alb-main-'+slug(x.al)}" title="${x.s}"><span class="d" aria-hidden="true"></span><time datetime="${x.d}">${x.f}</time><b>${x.t}</b><small>${pg?n+' láminas':n?n+' en la galería · álbum en preparación':'En preparación'}</small></a></li>`}).join('');
 /* Klee magic-square strips */
 const KLEE=['#c0432f','#e0812f','#e2b04a','#7d9a5b','#3d6a8e','#6e4466','#d99a86','#C8A96E'];
 document.querySelectorAll('.klee').forEach(el=>{const r=rnd((+el.dataset.seed||1)*977),c=48;el.style.setProperty('--c',c);el.innerHTML=Array.from({length:c*2},()=>`<i style="background:${KLEE[Math.floor(r()*KLEE.length)]};opacity:${(.55+r()*.45).toFixed(2)}"></i>`).join('')});
