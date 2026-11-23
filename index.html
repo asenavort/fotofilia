@@ -7,6 +7,11 @@ let filtered=null;
 <title>Fotofilia</title>
 <meta name="description" content="Fotofilia. Fotografía de viaje de Asensio Navarro.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="copyright" content="© Asensio Navarro Ortega. Todos los derechos reservados.">
+<meta name="author" content="Asensio Navarro Ortega">
+<meta name="robots" content="noai, noimageai">
+<meta name="tdm-reservation" content="1">
+<link rel="license" href="#aviso-legal">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Caveat:wght@500;700&family=Noto+Music&family=Abril+Fatface&display=swap" rel="stylesheet">
@@ -24,7 +29,7 @@ let filtered=null;
 html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 Inter,system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-img{max-width:100%;display:block}
+img{max-width:100%;display:block;-webkit-user-drag:none}
 [hidden]{display:none!important}
 .band{padding-block:clamp(64px,8vw,120px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
 .wrap{max-width:1200px;margin:0 auto}
@@ -248,6 +253,11 @@ header.solid{background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-ba
 .gal figcaption b{font:400 18px "Playfair Display",serif}
 .l1{grid-column:1/span 7}.l2{grid-column:9/span 4;margin-top:18%}.l3{grid-column:2/span 5}.l4{grid-column:8/span 5;margin-top:-6%}.l5{grid-column:1/span 12}.l6{grid-column:4/span 6}
 .l1 .plate{aspect-ratio:3/2}.l2 .plate,.l3 .plate{aspect-ratio:4/5}.l4 .plate{aspect-ratio:1/1}.l6 .plate{aspect-ratio:5/4}.l5 .plate{aspect-ratio:21/9}
+.legal{max-width:820px}
+.legal h1{font-size:clamp(44px,6vw,72px);font-weight:700;line-height:1;margin-bottom:24px}
+.legal ol{padding-left:1.2em;margin:32px 0;display:grid;gap:18px}
+.legal li{color:var(--txt);line-height:1.75;padding-left:.3em}
+.legal li b{color:var(--ink);font-weight:600}
 /* albums */
 .alb{margin-top:clamp(36px,5vw,64px)}
 .alb-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:10px;margin-bottom:14px}
@@ -610,6 +620,26 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 </div></section>
 </div>
 
+<!-- ================= RESERVA DE DERECHOS ================= -->
+<div class="view" id="v-aviso-legal" hidden>
+<section class="band thero"><div class="wrap legal">
+  <p class="eyebrow">Aviso legal</p>
+  <h1>Reserva de <em>derechos</em></h1>
+  <p class="lead">Todas las fotografías de este sitio están protegidas por la legislación de propiedad intelectual. Cualquier utilización, modificación o difusión requiere el permiso previo y por escrito de su autor.</p>
+  <ol>
+    <li><b>Titularidad.</b> Las fotografías, textos, diseños y signos distintivos de www.fotofilia.es (incluidos el nombre «Fotofilia» y sus logotipos) son obra de Asensio Navarro Ortega, salvo indicación expresa en contrario. Están protegidos por el Texto Refundido de la Ley de Propiedad Intelectual, aprobado por el Real Decreto Legislativo 1/1996, de 12 de abril (TRLPI), como obras fotográficas (art. 10.1.h) o, en su caso, como meras fotografías (art. 128), y por los tratados internacionales aplicables, en particular el Convenio de Berna.</li>
+    <li><b>Reserva de derechos.</b> El autor se reserva en exclusiva todos los derechos de explotación sobre dichas obras: reproducción, distribución, comunicación pública, incluida la puesta a disposición del público por internet, y transformación (arts. 17 a 21 TRLPI). Conserva asimismo sus derechos morales, irrenunciables e inalienables, y en especial el reconocimiento de su autoría y el respeto a la integridad de la obra (art. 14 TRLPI).</li>
+    <li><b>Usos sujetos a autorización.</b> Requiere autorización previa, expresa y por escrito del autor cualquier utilización de las fotografías por cualquier medio o en cualquier formato, sea total o parcial y con o sin ánimo de lucro. En particular, la copia o descarga para su reutilización; la modificación, el recorte, el retoque, el montaje o cualquier obra derivada; su difusión o publicación en otros sitios web, redes sociales, medios impresos o audiovisuales; su uso comercial, publicitario o institucional; la impresión, exposición o venta de copias; y su incorporación a bases de datos o colecciones. Cada autorización vale únicamente para el uso, medio, ámbito territorial y plazo que en ella se indiquen expresamente. Ninguna disposición de este aviso supone una cesión o licencia de derechos.</li>
+    <li><b>Marcas de agua y metadatos.</b> Las fotografías llevan una marca de agua con el logotipo y el nombre del autor, y metadatos de identificación. Esta información para la gestión de derechos está protegida (art. 162 TRLPI): queda prohibido suprimirla, alterarla u ocultarla, así como distribuir o difundir copias en las que se haya suprimido o alterado.</li>
+    <li><b>Minería de textos y datos e inteligencia artificial.</b> El autor se reserva expresamente el uso de las obras para minería de textos y datos, incluido el entrenamiento de sistemas de inteligencia artificial, conforme al artículo 4.3 de la Directiva (UE) 2019/790 y a su normativa española de transposición (Real Decreto-ley 24/2021, de 2 de noviembre). Esta reserva se expresa también por medios de lectura mecánica en el código de este sitio.</li>
+    <li><b>Límites legales.</b> Lo anterior se entiende sin perjuicio de los límites previstos en la ley, como el derecho de cita (art. 32 TRLPI), que exige indicar la fuente y el nombre del autor y ajustarse a los fines y la extensión que la ley justifica.</li>
+    <li><b>Solicitud de permisos.</b> Las solicitudes de uso, licencias o copias deben dirigirse al autor a través de la dirección de contacto de esta web, indicando la obra, el uso previsto, el medio y el plazo.</li>
+    <li><b>Infracciones.</b> El uso no autorizado podrá dar lugar al ejercicio de las acciones civiles previstas en los artículos 138 y siguientes del TRLPI, incluidas la cesación y la indemnización de daños y perjuicios, así como, en su caso, de las acciones penales previstas en los artículos 270 y siguientes del Código Penal.</li>
+  </ol>
+  <p class="lbl">© 2026 Asensio Navarro Ortega. Todos los derechos reservados.</p>
+</div></section>
+</div>
+
 <!-- ================= EUROPA / ASIA Y ORIENTE MEDIO ================= -->
 <div class="view" id="v-europa" hidden>
 <section class="band thero"><div class="wrap g">
@@ -641,7 +671,7 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 <footer>
   <div class="wrap">
     <div class="ft"><img src="logo/fotofilia-palabra-oscuro.svg" alt="Fotofilia" style="height:34px;width:auto"><nav aria-label="Pie"><a href="#galeria">Galería</a><a href="#destinos">Destinos</a><a href="#blanco-y-negro">Blanco y negro</a><a href="#leica">Leica</a><a href="#musica-y-fotografia">Música</a><a href="#fotografia-y-vino">Vino</a><a href="#underlands">Underlands</a><a href="#europa">Europa</a><a href="#asia-y-oriente-medio">Asia y Oriente Medio</a><a href="#sobre">Sobre mí</a></nav></div>
-    <div class="fb"><span>© 2026 Asensio Navarro Ortega · fotofilia.es · Todos los derechos reservados</span><div class="soc"><a href="https://www.instagram.com/" title="Instagram">IG</a><a href="https://500px.com/" title="500px">5×</a><a href="https://www.flickr.com/" title="Flickr">FL</a></div></div>
+    <div class="fb"><span>© 2026 Asensio Navarro Ortega · Todos los derechos reservados · <a href="#aviso-legal" style="color:inherit">Reserva de derechos</a></span><div class="soc"><a href="https://www.instagram.com/" title="Instagram">IG</a><a href="https://500px.com/" title="500px">5×</a><a href="https://www.flickr.com/" title="Flickr">FL</a></div></div>
   </div>
 </footer>
 
@@ -812,7 +842,7 @@ document.querySelectorAll('.filters button').forEach(btn=>btn.addEventListener('
 /* viewer */
 let list=[],cur=0,curSet='main',last=null;
 const lb=$('lb'),lbp=$('lbp'),lbc=$('lbc');
-const show=n=>{cur=n;const i=list[n],p=SETS[curSet][i];fill(lbp,p,seedOf(curSet,i));lbc.innerHTML=`<b>${p.t}</b><p>Lámina ${ROMAN(i+1)} · ${p.p} · 2026. ${p.m}</p>${exif(p)}`};
+const show=n=>{cur=n;const i=list[n],p=SETS[curSet][i];fill(lbp,p,seedOf(curSet,i));lbc.innerHTML=`<b>${p.t}</b><p>Lámina ${ROMAN(i+1)} · ${p.p} · 2026. ${p.m}</p>${exif(p)}<p style=\"font-size:12px;margin-top:8px\">© Asensio Navarro Ortega. Prohibida su reproducción sin autorización · <a href=\"#aviso-legal\" style=\"color:inherit\">Reserva de derechos</a></p>`};
 const open=(set,i)=>{last=document.activeElement;curSet=set;list=SETS[set].map((_,n)=>n).filter(n=>set!=='main'||!filtered||SETS.main[n].r===filtered);let at=list.indexOf(i);if(at<0){list=SETS[set].map((_,n)=>n);at=i}show(at);lb.classList.add('on');document.body.style.overflow='hidden';$('close').focus()};
 const close=()=>{lb.classList.remove('on');document.body.style.overflow='';last&&last.focus()};
 const step=d=>show((cur+d+list.length)%list.length);
@@ -879,7 +909,7 @@ addEventListener('scroll',onScroll,{passive:true});
 const rvs=document.querySelectorAll('.rv');
 if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('on');io.unobserve(en.target)}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});rvs.forEach(el=>io.observe(el));setTimeout(()=>rvs.forEach(el=>el.classList.add('on')),4000)}else rvs.forEach(el=>el.classList.add('on'));
 /* tabs via hash */
-const VIEWS=['inicio','blanco-y-negro','leica','musica-y-fotografia','fotografia-y-vino','underlands','europa','asia-y-oriente-medio'];
+const VIEWS=['aviso-legal','inicio','blanco-y-negro','leica','musica-y-fotografia','fotografia-y-vino','underlands','europa','asia-y-oriente-medio'];
 const route=()=>{const h=location.hash.slice(1),t=h&&$(h),outside=t&&!t.closest('.view'),v=VIEWS.includes(h)?h:outside?curV:'inicio',changed=v!==curV||!route.done;
  VIEWS.forEach(x=>$('v-'+x).hidden=x!==v);curV=v;document.documentElement.classList.toggle('is-night',v==='musica-y-fotografia');route.done=1;
  document.querySelectorAll('.nav nav a').forEach(a=>{a.dataset.v&&a.dataset.v!=='inicio'&&a.dataset.v===v?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
