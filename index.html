@@ -656,23 +656,23 @@ document.documentElement.classList.add('js');
 /* Para usar tus fotos: pon la ruta en img (p. ej. "fotos/atacama-01.jpg") y sus datos reales en x. Si img está vacío se dibuja la muestra. */
 const SETS={
  main:[
-  {img:'fotos/cebras-kruger.jpg',k:'sabana2',t:'Rayas',p:'Sudáfrica y Esuatini',al:'Sudáfrica y Esuatini',r:'africa',c:'Sudáfrica|Esuatini',pick:1,x:["280 mm", "f/5.6", "1/500 s", "ISO 500"],m:'Dos cebras superpuestas hasta confundirse: el camuflaje convertido en grafismo.'},
-  {img:'fotos/elefante-kruger.jpg',k:'mar2',t:'Piel',p:'Sudáfrica y Esuatini',al:'Sudáfrica y Esuatini',r:'africa',c:'Sudáfrica|Esuatini',pick:0,mono:1,x:["280 mm", "f/5.6", "1/500 s", "ISO 125"],m:'El ojo de un elefante entre los pliegues de su piel: un paisaje en sí mismo.'},
-  {img:'fotos/impala-kruger.jpg',k:'sabana',t:'Impala',p:'Sudáfrica y Esuatini',al:'Sudáfrica y Esuatini',r:'africa',c:'Sudáfrica|Esuatini',pick:0,x:["280 mm", "f/5.6", "1/500 s", "ISO 100"],m:'La mirada frontal de un impala macho, alerta y sereno a la vez.'},
-  {img:'fotos/atardecer-kruger.jpg',k:'ciudad',t:'Último sol sobre la sabana',p:'Sudáfrica y Esuatini',al:'Sudáfrica y Esuatini',r:'africa',c:'Sudáfrica|Esuatini',pick:1,x:["280 mm", "f/10", "1/1000 s", "ISO 100"],m:'Las acacias recortadas contra un sol que se apaga en naranja.'},
-  {img:'fotos/barcas-marea-mozambique.jpg',k:'mar',t:'Marea baja',p:'Vilankulos, Inhambane y Maputo',al:'Vilankulos, Inhambane y Maputo',r:'africa',c:'Mozambique',pick:1,x:["85 mm", "f/9", "1/160 s", "ISO 100"],m:'Las barcas esperan varadas a que vuelva el Índico.'},
-  {img:'fotos/rayos-bahia-mozambique.jpg',k:'mar2',t:'Luz sobre la bahía',p:'Vilankulos, Inhambane y Maputo',al:'Vilankulos, Inhambane y Maputo',r:'africa',c:'Mozambique',pick:0,x:["105 mm", "f/5.6", "1/125 s", "ISO 320"],m:'Rayos que se abren paso entre las nubes sobre las embarcaciones fondeadas.'},
-  {img:'fotos/flamenco-atacama.jpg',k:'desierto',t:'Flamenco',p:'Atacama, Chile',al:'Atacama, Chile',r:'america',c:'Chile',pick:1,x:["200 mm", "f/5.6", "1/1000 s", "ISO 1250"],m:'Un flamenco se dobla sobre su reflejo: la vida que el altiplano sostiene con muy poca agua.'},
-  {img:'fotos/laguna-espejo-atacama.jpg',k:'mar',t:'Laguna espejo',p:'Atacama, Chile',al:'Atacama, Chile',r:'america',c:'Chile',pick:0,x:["98 mm", "f/7.1", "1/250 s", "ISO 100"],m:'La cordillera se duplica en el agua quieta a primera hora.'},
-  {img:'fotos/laguna-altiplano.jpg',k:'andes',t:'Laguna altiplánica',p:'Atacama, Chile',al:'Atacama, Chile',r:'america',c:'Chile',pick:1,x:["70 mm", "f/10", "1/400 s", "ISO 100"],m:'Ocre, rojo y turquesa: el altiplano pinta con la paleta de Klee.'},
-  {img:'fotos/calle-cartagena.jpg',k:'ciudad2',t:'Calle de la ciudad amurallada',p:'Cartagena, Colombia',al:'Cartagena, Colombia',r:'america',c:'Colombia',pick:0,x:["70 mm", "f/5.6", "1/160 s", "ISO 250"],m:'Balcones, buganvillas y un coche de caballos al fondo: la Cartagena colonial al caer la tarde.'}],
+  {img:'fotos/sudafrica-y-esuatini/cebras-kruger.jpg',k:'sabana2',t:'Rayas',p:'Sudáfrica y Esuatini',al:'Sudáfrica y Esuatini',r:'africa',c:'Sudáfrica|Esuatini',pick:1,x:["280 mm", "f/5.6", "1/500 s", "ISO 500"],m:'Dos cebras superpuestas hasta confundirse: el camuflaje convertido en grafismo.'},
+  {img:'fotos/sudafrica-y-esuatini/elefante-kruger.jpg',k:'mar2',t:'Piel',p:'Sudáfrica y Esuatini',al:'Sudáfrica y Esuatini',r:'africa',c:'Sudáfrica|Esuatini',pick:0,mono:1,x:["280 mm", "f/5.6", "1/500 s", "ISO 125"],m:'El ojo de un elefante entre los pliegues de su piel: un paisaje en sí mismo.'},
+  {img:'fotos/sudafrica-y-esuatini/impala-kruger.jpg',k:'sabana',t:'Impala',p:'Sudáfrica y Esuatini',al:'Sudáfrica y Esuatini',r:'africa',c:'Sudáfrica|Esuatini',pick:0,x:["280 mm", "f/5.6", "1/500 s", "ISO 100"],m:'La mirada frontal de un impala macho, alerta y sereno a la vez.'},
+  {img:'fotos/sudafrica-y-esuatini/atardecer-kruger.jpg',k:'ciudad',t:'Último sol sobre la sabana',p:'Sudáfrica y Esuatini',al:'Sudáfrica y Esuatini',r:'africa',c:'Sudáfrica|Esuatini',pick:1,x:["280 mm", "f/10", "1/1000 s", "ISO 100"],m:'Las acacias recortadas contra un sol que se apaga en naranja.'},
+  {img:'fotos/vilankulos-inhambane-y-maputo/barcas-marea-mozambique.jpg',k:'mar',t:'Marea baja',p:'Vilankulos, Inhambane y Maputo',al:'Vilankulos, Inhambane y Maputo',r:'africa',c:'Mozambique',pick:1,x:["85 mm", "f/9", "1/160 s", "ISO 100"],m:'Las barcas esperan varadas a que vuelva el Índico.'},
+  {img:'fotos/vilankulos-inhambane-y-maputo/rayos-bahia-mozambique.jpg',k:'mar2',t:'Luz sobre la bahía',p:'Vilankulos, Inhambane y Maputo',al:'Vilankulos, Inhambane y Maputo',r:'africa',c:'Mozambique',pick:0,x:["105 mm", "f/5.6", "1/125 s", "ISO 320"],m:'Rayos que se abren paso entre las nubes sobre las embarcaciones fondeadas.'},
+  {img:'fotos/atacama/flamenco-atacama.jpg',k:'desierto',t:'Flamenco',p:'Atacama, Chile',al:'Atacama, Chile',r:'america',c:'Chile',pick:1,x:["200 mm", "f/5.6", "1/1000 s", "ISO 1250"],m:'Un flamenco se dobla sobre su reflejo: la vida que el altiplano sostiene con muy poca agua.'},
+  {img:'fotos/atacama/laguna-espejo-atacama.jpg',k:'mar',t:'Laguna espejo',p:'Atacama, Chile',al:'Atacama, Chile',r:'america',c:'Chile',pick:0,x:["98 mm", "f/7.1", "1/250 s", "ISO 100"],m:'La cordillera se duplica en el agua quieta a primera hora.'},
+  {img:'fotos/atacama/laguna-altiplano.jpg',k:'andes',t:'Laguna altiplánica',p:'Atacama, Chile',al:'Atacama, Chile',r:'america',c:'Chile',pick:1,x:["70 mm", "f/10", "1/400 s", "ISO 100"],m:'Ocre, rojo y turquesa: el altiplano pinta con la paleta de Klee.'},
+  {img:'fotos/cartagena/calle-cartagena.jpg',k:'ciudad2',t:'Calle de la ciudad amurallada',p:'Cartagena, Colombia',al:'Cartagena, Colombia',r:'america',c:'Colombia',pick:0,x:["70 mm", "f/5.6", "1/160 s", "ISO 250"],m:'Balcones, buganvillas y un coche de caballos al fondo: la Cartagena colonial al caer la tarde.'}],
  bn:[
-  {img:'fotos/elefante-kruger.jpg',t:'Piel',p:'Sudáfrica y Esuatini',pick:1,x:["280 mm", "f/5.6", "1/500 s", "ISO 125"],m:'Textura antes que color.'},
-  {img:'fotos/cebras-kruger.jpg',t:'Rayas',p:'Sudáfrica y Esuatini',pick:1,x:["280 mm", "f/5.6", "1/500 s", "ISO 500"],m:'La cebra ya era una fotografía en blanco y negro.'},
-  {img:'fotos/martin-pescador-kruger.jpg',t:'Martín pescador',p:'Sudáfrica y Esuatini',x:["280 mm", "f/5.6", "1/500 s", "ISO 160"],m:'Plumaje de grabado.'},
-  {img:'fotos/flamenco-atacama.jpg',t:'Reflejo',p:'Atacama, Chile',pick:1,x:["200 mm", "f/5.6", "1/1000 s", "ISO 1250"],m:'Sin el rosa, queda la forma.'},
-  {img:'fotos/hiena-kruger.jpg',t:'Siesta',p:'Sudáfrica y Esuatini',x:["280 mm", "f/5.6", "1/500 s", "ISO 500"],m:'Luz y pelaje.'},
-  {img:'fotos/impala-kruger.jpg',t:'Impala',p:'Sudáfrica y Esuatini',x:["280 mm", "f/5.6", "1/500 s", "ISO 100"],m:'La mirada, sola.'}],
+  {img:'fotos/sudafrica-y-esuatini/elefante-kruger.jpg',t:'Piel',p:'Sudáfrica y Esuatini',pick:1,x:["280 mm", "f/5.6", "1/500 s", "ISO 125"],m:'Textura antes que color.'},
+  {img:'fotos/sudafrica-y-esuatini/cebras-kruger.jpg',t:'Rayas',p:'Sudáfrica y Esuatini',pick:1,x:["280 mm", "f/5.6", "1/500 s", "ISO 500"],m:'La cebra ya era una fotografía en blanco y negro.'},
+  {img:'fotos/sudafrica-y-esuatini/martin-pescador-kruger.jpg',t:'Martín pescador',p:'Sudáfrica y Esuatini',x:["280 mm", "f/5.6", "1/500 s", "ISO 160"],m:'Plumaje de grabado.'},
+  {img:'fotos/atacama/flamenco-atacama.jpg',t:'Reflejo',p:'Atacama, Chile',pick:1,x:["200 mm", "f/5.6", "1/1000 s", "ISO 1250"],m:'Sin el rosa, queda la forma.'},
+  {img:'fotos/sudafrica-y-esuatini/hiena-kruger.jpg',t:'Siesta',p:'Sudáfrica y Esuatini',x:["280 mm", "f/5.6", "1/500 s", "ISO 500"],m:'Luz y pelaje.'},
+  {img:'fotos/sudafrica-y-esuatini/impala-kruger.jpg',t:'Impala',p:'Sudáfrica y Esuatini',x:["280 mm", "f/5.6", "1/500 s", "ISO 100"],m:'La mirada, sola.'}],
  leica:[
   {k:'ciudad2',t:'Avenida al anochecer',p:'Maputo, Mozambique',pick:1,x:['Summicron-M 35 mm','f/2.8','1/60 s','ISO 1600'],m:'La ciudad se enciende frente a la bahía.'},
   {k:'ciudad',t:'Carrera Séptima',p:'Bogotá, Colombia',mono:1,pick:1,x:['Summicron-M 35 mm','f/5.6','1/250 s','ISO 400'],m:'La calle a la distancia del telémetro.'},
@@ -682,24 +682,24 @@ const SETS={
   {k:'desierto',t:'San Pedro',p:'Atacama, Chile',mono:1,pick:1,x:['Summicron-M 35 mm','f/11','1/500 s','ISO 100'],m:'Adobe y luz dura de mediodía.'}]
 };
 SETS.under=[
-  {img:'fotos/u-bruma-eswatini.jpg',t:'Bruma',p:'Sudáfrica y Esuatini',pick:1,x:["98 mm", "f/6.3", "1/200 s", "ISO 100"],m:'Capas de aire y polvo, como una acuarela de Turner.'},
-  {img:'fotos/u-juncos-eswatini.jpg',t:'Juncos',p:'Sudáfrica y Esuatini',pick:1,x:["280 mm", "f/5.6", "1/320 s", "ISO 100"],m:'El agua y los tallos en pinceladas verticales, a la manera de Monet.'},
-  {img:'fotos/u-laguna-atacama.jpg',t:'Laguna y volcanes',p:'Atacama, Chile',x:["70 mm", "f/10", "1/400 s", "ISO 100"],m:'Franjas de color superpuestas, casi un campo de color.'},
-  {img:'fotos/u-sol-acacia-kruger.jpg',t:'Sol tras la acacia',p:'Sudáfrica y Esuatini',pick:1,x:["102 mm", "f/9", "1/640 s", "ISO 100"],m:'La luz que estalla entre las ramas, con algo de Van Gogh.'},
-  {img:'fotos/u-volcanes-atacama.jpg',t:'Volcanes',p:'Atacama, Chile',x:["62 mm", "f/14", "1/200 s", "ISO 100"],m:'Tres planos limpios: cielo, montaña y sal, como una estampa japonesa.'},
-  {img:'fotos/u-riego-eswatini.jpg',t:'Riego',p:'Sudáfrica y Esuatini',x:["98 mm", "f/9", "1/250 s", "ISO 100"],m:'Arcos de agua que se vuelven niebla luminosa.'},
-  {img:'fotos/u-canaveral-eswatini.jpg',t:'Cañaveral',p:'Sudáfrica y Esuatini',x:["98 mm", "f/10", "1/250 s", "ISO 100"],m:'Penachos contra un cielo blanco, un friso impresionista.'}
+  {img:'fotos/underlands/sudafrica-y-esuatini/u-bruma-eswatini.jpg',t:'Bruma',p:'Sudáfrica y Esuatini',pick:1,x:["98 mm", "f/6.3", "1/200 s", "ISO 100"],m:'Capas de aire y polvo, como una acuarela de Turner.'},
+  {img:'fotos/underlands/sudafrica-y-esuatini/u-juncos-eswatini.jpg',t:'Juncos',p:'Sudáfrica y Esuatini',pick:1,x:["280 mm", "f/5.6", "1/320 s", "ISO 100"],m:'El agua y los tallos en pinceladas verticales, a la manera de Monet.'},
+  {img:'fotos/underlands/atacama/u-laguna-atacama.jpg',t:'Laguna y volcanes',p:'Atacama, Chile',x:["70 mm", "f/10", "1/400 s", "ISO 100"],m:'Franjas de color superpuestas, casi un campo de color.'},
+  {img:'fotos/underlands/sudafrica-y-esuatini/u-sol-acacia-kruger.jpg',t:'Sol tras la acacia',p:'Sudáfrica y Esuatini',pick:1,x:["102 mm", "f/9", "1/640 s", "ISO 100"],m:'La luz que estalla entre las ramas, con algo de Van Gogh.'},
+  {img:'fotos/underlands/atacama/u-volcanes-atacama.jpg',t:'Volcanes',p:'Atacama, Chile',x:["62 mm", "f/14", "1/200 s", "ISO 100"],m:'Tres planos limpios: cielo, montaña y sal, como una estampa japonesa.'},
+  {img:'fotos/underlands/sudafrica-y-esuatini/u-riego-eswatini.jpg',t:'Riego',p:'Sudáfrica y Esuatini',x:["98 mm", "f/9", "1/250 s", "ISO 100"],m:'Arcos de agua que se vuelven niebla luminosa.'},
+  {img:'fotos/underlands/sudafrica-y-esuatini/u-canaveral-eswatini.jpg',t:'Cañaveral',p:'Sudáfrica y Esuatini',x:["98 mm", "f/10", "1/250 s", "ISO 100"],m:'Penachos contra un cielo blanco, un friso impresionista.'}
 ];
 SETS.bn.forEach(p=>p.mono=1);
 const DEST=[
- {n:'África austral',reg:'Mozambique · Sudáfrica · Esuatini',img:'fotos/atardecer-kruger.jpg',k:'sabana',f:'africa',go:'alb-main-sudafrica-y-esuatini',rc:'#e0812f'},
- {n:'Chile y Colombia',reg:'Sudamérica',img:'fotos/laguna-altiplano.jpg',k:'desierto2',f:'america',go:'alb-main-atacama-chile',rc:'#d99a86'},
+ {n:'África austral',reg:'Mozambique · Sudáfrica · Esuatini',img:'fotos/sudafrica-y-esuatini/atardecer-kruger.jpg',k:'sabana',f:'africa',go:'alb-main-sudafrica-y-esuatini',rc:'#e0812f'},
+ {n:'Chile y Colombia',reg:'Sudamérica',img:'fotos/atacama/laguna-altiplano.jpg',k:'desierto2',f:'america',go:'alb-main-atacama-chile',rc:'#d99a86'},
  {n:'Hlane, Esuatini',reg:'Próximo',k:'montana',soon:1,rc:'#a7c07f'}
 ];
 const BOOKS=[
- {t:'Lo que queda',d:'África austral · 2026',img:'fotos/cebras-kruger.jpg',k:'sabana',c:'#c0432f',tx:'#f6efe6',go:'#galeria',f:'africa'},
- {t:'Sed',d:'Chile y Colombia · 2026',img:'fotos/flamenco-atacama.jpg',k:'desierto2',c:'#e2b04a',tx:'#1b1b1b',go:'#galeria',f:'america'},
- {t:'Monocromo',d:'Sesiones en blanco y negro · 2026',img:'fotos/elefante-kruger.jpg',k:'noche',c:'#141414',tx:'#ece9e2',go:'#blanco-y-negro',mono:1,vinyl:1}
+ {t:'Lo que queda',d:'África austral · 2026',img:'fotos/sudafrica-y-esuatini/cebras-kruger.jpg',k:'sabana',c:'#c0432f',tx:'#f6efe6',go:'#galeria',f:'africa'},
+ {t:'Sed',d:'Chile y Colombia · 2026',img:'fotos/atacama/flamenco-atacama.jpg',k:'desierto2',c:'#e2b04a',tx:'#1b1b1b',go:'#galeria',f:'america'},
+ {t:'Monocromo',d:'Sesiones en blanco y negro · 2026',img:'fotos/sudafrica-y-esuatini/elefante-kruger.jpg',k:'noche',c:'#141414',tx:'#ece9e2',go:'#blanco-y-negro',mono:1,vinyl:1}
 ];
 const GEAR=[
  {n:'Sony A7 II',d:'Formato completo. Cuerpo principal para viaje y retrato.',i:'body'},
