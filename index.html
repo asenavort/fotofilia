@@ -93,6 +93,15 @@ header.solid{background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-ba
 .hero-dots button{width:7px;height:7px;border-radius:50%;border:1px solid rgba(255,255,255,.7);background:transparent;padding:0;cursor:pointer}
 .hero-dots button.on{background:var(--gold);border-color:var(--gold)}
 @media(prefers-reduced-motion:reduce){.hero-bg .plate.on img{animation:none}}
+.thero .plate img{opacity:0;transition:opacity 2.6s cubic-bezier(.4,0,.6,1);transform:scale(1.035);transform-origin:center;will-change:transform,opacity}
+.thero .plate img.on{opacity:1;animation:var(--mk,mk-a) 11s cubic-bezier(.33,0,.67,1) forwards}
+.thero .plate img:only-child{opacity:1}
+@keyframes mk-a{from{transform:scale(1.02)}to{transform:scale(1.075)}}
+@keyframes mk-b{from{transform:scale(1.06) translate(1.4%,0)}to{transform:scale(1.06) translate(-1.4%,0)}}
+@keyframes mk-c{from{transform:scale(1.08)}to{transform:scale(1.025)}}
+@keyframes mk-d{from{transform:scale(1.06) translate(-1%,1%)}to{transform:scale(1.07) translate(1%,-1%)}}
+@keyframes mk-e{from{transform:scale(1.06) translate(-1.4%,0)}to{transform:scale(1.06) translate(1.4%,0)}}
+@media(prefers-reduced-motion:reduce){.thero .plate img.on{animation:none;transform:none}.thero .plate img{transition:none}}
 .hero-bg::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse 46% 34% at 50% 50%,rgba(10,10,10,.38),rgba(10,10,10,0) 100%),linear-gradient(rgba(10,10,10,.5),rgba(10,10,10,.22) 40%,rgba(10,10,10,.68))}
 .hero-in{position:relative;padding:0 20px}
 .hero .eyebrow{color:var(--gold)}
@@ -893,6 +902,17 @@ document.querySelectorAll('[data-src]').forEach(el=>{const [s,n]=el.dataset.src.
  const play=()=>{clearInterval(timer);if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))timer=setInterval(()=>{if(!document.hidden)go(cur+1)},9500)};
  [...dots.children].forEach((b,i)=>b.onclick=e=>{e.stopPropagation();go(i);play()});
  setCap(0);setTimeout(()=>pl.forEach((p,i)=>{const im=p.querySelector('img');if(im&&i<3)im.loading='eager'}),0);play()}
+/* micro-transiciones en la lámina que enmarca cada álbum */
+{const RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,MK=['mk-a','mk-b','mk-c','mk-d','mk-e'],NOP=/Retrato|Fotógrafa|Saludo|Sonrisa|Contemplación|Atardecer en el salar|Géiseres al amanecer|viajero/i;
+ const albs=[...document.querySelectorAll('.thero .plate[data-src]')].map(el=>{const [s,n0]=el.dataset.src.split(':'),A=SETS[s],h=+n0;if(!A||A.length<4)return null;
+  const k=Math.min(6,A.length),pk=[h];for(let j=1;pk.length<k&&j<A.length*2;j++){const i=Math.round((h+j*A.length/k))%A.length;const c=[i,(i+1)%A.length,(i+2)%A.length].find(x=>!pk.includes(x)&&A[x].img&&!NOP.test(A[x].t));if(c!=null)pk.push(c)}
+  if(pk.length<2)return null;
+  el.innerHTML=pk.map((i,z)=>`<img src="${A[i].img}" alt="${A[i].t}, ${A[i].p}" loading="${z?'lazy':'eager'}"${z?'':' class="on"'}>`).join('');
+  const ims=[...el.children];ims[0].style.setProperty('--mk',MK[0]);return {el,s,A,pk,ims,cur:0}}).filter(Boolean);
+ if(!RM){const step=a=>{const o=a.ims[a.cur];a.cur=(a.cur+1)%a.pk.length;const n=a.ims[a.cur];n.loading='eager';const nx=a.ims[(a.cur+1)%a.pk.length];nx.loading='eager';
+   n.classList.remove('on');n.style.setProperty('--mk',MK[a.cur%MK.length]);void n.offsetWidth;n.classList.add('on');setTimeout(()=>o.classList.remove('on'),2700);
+   const i=a.pk[a.cur];a.el.dataset.open=a.s+':'+i;a.el.setAttribute('aria-label','Ver '+a.A[i].t)};
+  setInterval(()=>{if(document.hidden)return;albs.forEach(a=>{if(a.el.offsetParent)step(a)})},8500)}}
 const M=SETS.main,places=new Set(M.flatMap(p=>(p.c||'').split('|').filter(Boolean))),total=M.length+SETS.bn.length+SETS.leica.length;
 const metaHTML=[[2,'Viajes'],[places.size,'Países'],[total,'Láminas']].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
 $('meta').innerHTML=metaHTML;$('meta2').innerHTML=[[places.size,'Países'],[2,'Continentes'],['Sony · Leica','Sistemas']].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
