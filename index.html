@@ -101,7 +101,7 @@ header.solid{background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-ba
 @keyframes mk-c{from{transform:scale(1.08)}to{transform:scale(1.025)}}
 @keyframes mk-d{from{transform:scale(1.06) translate(-1%,1%)}to{transform:scale(1.07) translate(1%,-1%)}}
 @keyframes mk-e{from{transform:scale(1.06) translate(-1.4%,0)}to{transform:scale(1.06) translate(1.4%,0)}}
-@media(prefers-reduced-motion:reduce){.thero .plate img.on{animation:none;transform:none}.thero .plate img{transition:none}}
+@media(prefers-reduced-motion:reduce){.thero .plate img.on{animation:none;transform:none}}
 .hero-bg::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse 46% 34% at 50% 50%,rgba(10,10,10,.38),rgba(10,10,10,0) 100%),linear-gradient(rgba(10,10,10,.5),rgba(10,10,10,.22) 40%,rgba(10,10,10,.68))}
 .hero-in{position:relative;padding:0 20px}
 .hero .eyebrow{color:var(--gold)}
@@ -422,6 +422,7 @@ html.is-night #contacto h2,html.is-night #contacto .mail{color:#f3e9d8}
 .book.vinyl:hover .rec,.book.vinyl:focus-visible .rec{transform:translateX(14%) rotate(160deg)}
 .cover .kq{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;margin-top:auto;margin-bottom:10%}
 .cover .kq i{aspect-ratio:1/1}
+@media(hover:none){.card .ov,.dc .arr{opacity:1;transform:none}.card .ov{background:linear-gradient(to top,rgba(10,10,10,.78),transparent 52%)}}
 /* footer (June) */
 .vis{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5)}.vis b{font-weight:400;color:var(--gold);letter-spacing:.06em;font-variant-numeric:tabular-nums;margin-right:6px}
 footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
@@ -448,8 +449,8 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 .lb-ctl{display:flex;gap:6px}
 @media(max-width:600px){.alb-g{grid-template-columns:minmax(0,1fr)}.alb-g .card{grid-column:auto;height:260px}}
 @media(max-width:900px){.folders{grid-template-columns:1fr 1fr}.lex{grid-template-columns:1fr 1fr}.pair .mat,.pair .tx,.pair:nth-child(even) .mat,.pair:nth-child(even) .tx{grid-column:1/-1;order:0}.masonry{grid-template-columns:1fr 1fr;grid-auto-rows:200px}.masonry .card{grid-area:auto}.masonry .card:first-child{grid-column:1/3;grid-row:span 2}.masonry.flat .card{grid-area:auto}.dest{grid-template-columns:minmax(0,1fr)}.dc{height:340px}.about .img,.about .txt,.dark .plate,.dark blockquote,.post .mat,.post .txt,.ap .fig,.ap .ctl,.thero .mat,.thero aside{grid-column:1/-1}.about .img::before{display:none}.glist{grid-template-columns:1fr 1fr}.l1,.l2,.l3,.l4,.l6{grid-column:span 6;margin-top:0}.l2 .plate,.l3 .plate,.l4 .plate,.l6 .plate{aspect-ratio:4/5}.ap .fig{margin:0 auto}}
-@media(max-width:600px){.masonry{grid-template-columns:minmax(0,1fr);grid-auto-rows:260px}.masonry .card:first-child{grid-column:auto;grid-row:auto}.ov{opacity:1}.shelf{grid-template-columns:minmax(0,1fr);max-width:300px}.glist{grid-template-columns:minmax(0,1fr)}.l1,.l2,.l3,.l4,.l6{grid-column:1/-1}.l5 .plate{aspect-ratio:3/2}.lb-bar{grid-template-columns:minmax(0,1fr)}.form{flex-direction:column}.hero-cap{display:none}.nav nav a{font-size:11px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
+@media(max-width:600px){.masonry{grid-template-columns:minmax(0,1fr);grid-auto-rows:260px}.masonry .card:first-child{grid-column:auto;grid-row:auto}.ov{opacity:1}.shelf{grid-template-columns:minmax(0,1fr);max-width:300px}.glist{grid-template-columns:minmax(0,1fr)}.l1,.l2,.l3,.l4,.l6{grid-column:1/-1}.l5 .plate{aspect-ratio:3/2}.lb-bar{grid-template-columns:minmax(0,1fr)}.form{flex-direction:column}.hero-cap{bottom:166px;max-width:58vw;font-size:11px;line-height:1.4}.hero-cap .exif{display:none}.nav{flex-wrap:nowrap;flex-direction:column;align-items:flex-start;gap:2px}.nav nav{flex-wrap:nowrap;overflow-x:auto;max-width:100%;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent);padding-right:24px}.nav nav::-webkit-scrollbar{display:none}.nav nav a{font-size:11px}.tl ol{-webkit-mask-image:linear-gradient(90deg,#000 80%,transparent);mask-image:linear-gradient(90deg,#000 80%,transparent)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}.hero-bg .plate img,.thero .plate img{transform:none!important}.js .rv{transform:none}}
 </style>
 </head>
 <body>
@@ -900,7 +901,8 @@ document.querySelectorAll('[data-src]').forEach(el=>{const [s,n]=el.dataset.src.
  const setCap=i=>{const [s,n]=HS[i],h=SETS[s][n];cap.innerHTML=`<div>${h.t} · ${h.p}</div><span class="exif">${h.x.map(v=>`<span>${v}</span>`).join('')}</span>`};
  dots.innerHTML=HS.map((_,i)=>`<button type="button" aria-label="Foto ${i+1}"${i?'':' class="on"'}></button>`).join('');
  const go=i=>{if(i===cur)return;pl.forEach((p,k)=>{if(k!==cur)p.classList.remove('prev')});const old=pl[cur];old.classList.add('prev');old.classList.remove('on');clearTimeout(go.t);go.t=setTimeout(()=>old.classList.remove('prev'),4800);pl[cur].tabIndex=-1;dots.children[cur].classList.remove('on');cur=(i+HS.length)%HS.length;const im=pl[cur].querySelector('img');if(im)im.loading='eager';const nx=pl[(cur+1)%pl.length].querySelector('img');if(nx){nx.loading='eager';nx.decode&&nx.decode().catch(()=>{})}pl[cur].classList.remove('run');pl[cur].style.setProperty('--kb',KB[cur%KB.length]);void pl[cur].offsetWidth;pl[cur].classList.add('run','on');pl[cur].tabIndex=0;dots.children[cur].classList.add('on');setCap(cur)};
- const play=()=>{clearInterval(timer);if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))timer=setInterval(()=>{if(!document.hidden)go(cur+1)},9500)};
+ const RMh=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,ready=i=>{const im=pl[i%pl.length].querySelector('img');if(!im)return true;if(im.loading!=='eager')im.loading='eager';return im.complete&&im.naturalWidth>0};
+ const play=()=>{clearInterval(timer);timer=setInterval(()=>{if(document.hidden)return;const n=(cur+1)%HS.length;if(ready(n))go(n);else ready(n)},RMh?12000:9500)};
  [...dots.children].forEach((b,i)=>b.onclick=e=>{e.stopPropagation();go(i);play()});
  setCap(0);setTimeout(()=>pl.forEach((p,i)=>{const im=p.querySelector('img');if(im&&i<3)im.loading='eager'}),0);play()}
 /* micro-transiciones en la lámina que enmarca cada álbum */
@@ -910,10 +912,10 @@ document.querySelectorAll('[data-src]').forEach(el=>{const [s,n]=el.dataset.src.
   if(pk.length<2)return null;
   el.innerHTML=pk.map((i,z)=>`<img src="${A[i].img}" alt="${A[i].t}, ${A[i].p}" loading="${z?'lazy':'eager'}"${z?'':' class="on"'}>`).join('');
   const ims=[...el.children];ims[0].style.setProperty('--mk',MK[0]);return {el,s,A,pk,ims,cur:0}}).filter(Boolean);
- if(!RM){const step=a=>{const o=a.ims[a.cur];a.cur=(a.cur+1)%a.pk.length;const n=a.ims[a.cur];n.loading='eager';const nx=a.ims[(a.cur+1)%a.pk.length];nx.loading='eager';
+ {albs.forEach(a=>{a.ims[1].loading='eager'});const ok=im=>im.complete&&im.naturalWidth>0;const step=a=>{const nn=a.ims[(a.cur+1)%a.pk.length];if(!ok(nn)){nn.loading='eager';return}const o=a.ims[a.cur];a.cur=(a.cur+1)%a.pk.length;const n=a.ims[a.cur];const nx=a.ims[(a.cur+1)%a.pk.length];nx.loading='eager';
    n.classList.remove('on');n.style.setProperty('--mk',MK[a.cur%MK.length]);void n.offsetWidth;n.classList.add('on');setTimeout(()=>o.classList.remove('on'),2700);
    const i=a.pk[a.cur];a.el.dataset.open=a.s+':'+i;a.el.setAttribute('aria-label','Ver '+a.A[i].t)};
-  setInterval(()=>{if(document.hidden)return;albs.forEach(a=>{if(a.el.offsetParent)step(a)})},8500)}}
+  setInterval(()=>{if(document.hidden)return;albs.forEach(a=>{if(a.el.offsetParent)step(a)})},RM?12000:8500)}}
 /* contador de visitas: una por sesión de navegador, sin cookies */
 (async()=>{try{const B='https://abacus.jasoncameron.dev/',K='fotofilia-es/visitas';let ss=null;try{ss=sessionStorage}catch(e){}
  const seen=ss&&ss.getItem('ff-v');const r=await fetch(B+(seen?'get/':'hit/')+K,{cache:'no-store'});if(!r.ok)return;const d=await r.json();
