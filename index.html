@@ -76,11 +76,16 @@ header.solid{background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-ba
 .hero{position:relative;height:100svh;min-height:620px;display:grid;place-items:center;overflow:hidden;color:#fff;text-align:center}
 .hero-bg{position:absolute;inset:-8% 0;will-change:transform}
 .hero-bg .plate{position:absolute;inset:0}
-.hero-bg .plate{opacity:0;transition:opacity 2.2s ease;pointer-events:none}
+.hero-bg .plate{opacity:0;transition:opacity 2.6s ease-in-out;pointer-events:none}
 .hero-bg .plate.on{opacity:1;pointer-events:auto}
-.hero-bg .plate img{transform:scale(1.02);transform-origin:center}
-.hero-bg .plate.on img{animation:kb 9s ease-out forwards}
-@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12)}}
+.hero-bg .plate img{transform:scale(1.14);transform-origin:center;will-change:transform}
+.hero-bg .plate.on img{animation:var(--kb,kb-in) 11s cubic-bezier(.33,0,.67,1) forwards}
+@keyframes kb-in{from{transform:scale(1.04)}to{transform:scale(1.2)}}
+@keyframes kb-out{from{transform:scale(1.22)}to{transform:scale(1.04)}}
+@keyframes kb-l{from{transform:scale(1.16) translateX(4.5%)}to{transform:scale(1.16) translateX(-4.5%)}}
+@keyframes kb-r{from{transform:scale(1.16) translateX(-4.5%)}to{transform:scale(1.16) translateX(4.5%)}}
+@keyframes kb-up{from{transform:scale(1.18) translate(-2%,3%)}to{transform:scale(1.1) translate(2%,-3%)}}
+@keyframes kb-dn{from{transform:scale(1.1) translate(3%,-2.5%)}to{transform:scale(1.2) translate(-2%,2.5%)}}
 .hero-dots{position:absolute;right:max(4vw,16px);bottom:172px;display:flex;gap:7px;z-index:2}
 .hero-dots button{width:7px;height:7px;border-radius:50%;border:1px solid rgba(255,255,255,.7);background:transparent;padding:0;cursor:pointer}
 .hero-dots button.on{background:var(--gold);border-color:var(--gold)}
@@ -869,11 +874,11 @@ document.querySelectorAll('[data-src]').forEach(el=>{const [s,n]=el.dataset.src.
 {const HS=[['main',7],['ata',63],['ata',4],['moz',19],['ata',18],['sae',54],['ata',8],['moz',7],['ata',97],['moz',1]];
  const bg=document.getElementById('heroBg'),cap=document.getElementById('heroCap'),dots=document.getElementById('heroDots');
  HS.slice(1).forEach(([s,n])=>{const d=document.createElement('div');d.className='plate';d.dataset.src=s+':'+n;d.dataset.k='hero';d.setAttribute('role','button');d.tabIndex=-1;d.setAttribute('aria-label','Ver '+SETS[s][n].t);fill(d,{...SETS[s][n],k:'hero'},seedOf(s,n));bg.appendChild(d)});
- const pl=[...bg.querySelectorAll('.plate')];let cur=0,timer;
+ const pl=[...bg.querySelectorAll('.plate')];let cur=0,timer;const KB=['kb-in','kb-l','kb-out','kb-up','kb-r','kb-dn','kb-out','kb-r','kb-in','kb-l'];pl[0].style.setProperty('--kb',KB[0]);
  const setCap=i=>{const [s,n]=HS[i],h=SETS[s][n];cap.innerHTML=`<div>${h.t} · ${h.p}</div><span class="exif">${h.x.map(v=>`<span>${v}</span>`).join('')}</span>`};
  dots.innerHTML=HS.map((_,i)=>`<button type="button" aria-label="Foto ${i+1}"${i?'':' class="on"'}></button>`).join('');
- const go=i=>{pl[cur].classList.remove('on');pl[cur].tabIndex=-1;dots.children[cur].classList.remove('on');cur=(i+HS.length)%HS.length;const im=pl[cur].querySelector('img');if(im){im.loading='eager';im.style.animation='none';void im.offsetWidth;im.style.animation=''}pl[cur].classList.add('on');pl[cur].tabIndex=0;dots.children[cur].classList.add('on');setCap(cur)};
- const play=()=>{clearInterval(timer);if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))timer=setInterval(()=>{if(!document.hidden)go(cur+1)},7000)};
+ const go=i=>{pl[cur].classList.remove('on');pl[cur].tabIndex=-1;dots.children[cur].classList.remove('on');cur=(i+HS.length)%HS.length;const im=pl[cur].querySelector('img');if(im){im.loading='eager';im.style.animation='none';void im.offsetWidth;im.style.animation=''}pl[cur].style.setProperty('--kb',KB[cur%KB.length]);pl[cur].classList.add('on');pl[cur].tabIndex=0;dots.children[cur].classList.add('on');setCap(cur)};
+ const play=()=>{clearInterval(timer);if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))timer=setInterval(()=>{if(!document.hidden)go(cur+1)},8500)};
  [...dots.children].forEach((b,i)=>b.onclick=e=>{e.stopPropagation();go(i);play()});
  setCap(0);setTimeout(()=>pl.forEach((p,i)=>{const im=p.querySelector('img');if(im&&i<3)im.loading='eager'}),0);play()}
 const M=SETS.main,places=new Set(M.flatMap(p=>(p.c||'').split('|').filter(Boolean))),total=M.length+SETS.bn.length+SETS.leica.length;
