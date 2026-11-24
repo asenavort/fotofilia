@@ -85,12 +85,13 @@ header.solid{background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-ba
 .hero-dots button{width:7px;height:7px;border-radius:50%;border:1px solid rgba(255,255,255,.7);background:transparent;padding:0;cursor:pointer}
 .hero-dots button.on{background:var(--gold);border-color:var(--gold)}
 @media(prefers-reduced-motion:reduce){.hero-bg .plate.on img{animation:none}}
-.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(10,10,10,.5),rgba(10,10,10,.22) 40%,rgba(10,10,10,.68))}
+.hero-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 46% 34% at 50% 50%,rgba(10,10,10,.38),rgba(10,10,10,0) 100%),linear-gradient(rgba(10,10,10,.5),rgba(10,10,10,.22) 40%,rgba(10,10,10,.68))}
 .hero-in{position:relative;padding:0 20px}
 .hero .eyebrow{color:var(--gold)}
 .dc .reg{color:var(--rc,var(--gold))}
 .ov small{color:var(--rc,var(--gold))}
-.hero h1{font-size:clamp(60px,9vw,128px);font-weight:700;line-height:.95;letter-spacing:-.02em}
+.hero h1{font-size:clamp(60px,9vw,128px);font-weight:700;line-height:.95;letter-spacing:-.02em;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.hero h1 em{color:#e2c48d;text-shadow:0 2px 18px rgba(0,0,0,.55)}
 .rule{width:80px;height:1px;background:var(--gold);margin:30px auto}
 .hero p{font-weight:300;color:rgba(255,255,255,.8);letter-spacing:.04em;max-width:430px;margin:0 auto;font-size:16px}
 .tl{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);width:min(880px,92vw);color:#fff;text-align:center}
