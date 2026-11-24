@@ -423,6 +423,7 @@ html.is-night #contacto h2,html.is-night #contacto .mail{color:#f3e9d8}
 .cover .kq{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;margin-top:auto;margin-bottom:10%}
 .cover .kq i{aspect-ratio:1/1}
 /* footer (June) */
+.vis{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5)}.vis b{font-weight:400;color:var(--gold);letter-spacing:.06em;font-variant-numeric:tabular-nums;margin-right:6px}
 footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 .ft{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:24px}
 .ft nav{display:flex;gap:6px 26px;flex-wrap:wrap}
@@ -764,7 +765,7 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 <footer>
   <div class="wrap">
     <div class="ft"><img src="logo/fotofilia-palabra-oscuro.svg" alt="Fotofilia" style="height:34px;width:auto"><nav aria-label="Pie"><a href="#galeria">Galería</a><a href="#destinos">Destinos</a><a href="#blanco-y-negro">Blanco y negro</a><a href="#leica">Leica</a><a href="#musica-y-fotografia">Música</a><a href="#fotografia-y-vino">Vino</a><a href="#underlands">Underlands</a><a href="#europa">Europa</a><a href="#asia-y-oriente-medio">Asia y Oriente Medio</a><a href="#sobre">Sobre mí</a></nav></div>
-    <div class="fb"><span>© 2026 Asensio Navarro · Todos los derechos reservados · <a href="#aviso-legal" style="color:inherit">Reserva de derechos</a></span><div class="soc"><a href="https://www.instagram.com/" title="Instagram">IG</a><a href="https://500px.com/" title="500px">5×</a><a href="https://www.flickr.com/" title="Flickr">FL</a></div></div>
+    <div class="fb"><span>© 2026 Asensio Navarro · Todos los derechos reservados · <a href="#aviso-legal" style="color:inherit">Reserva de derechos</a></span><span class="vis" id="vis" aria-live="polite" hidden><b id="visN">—</b> visitas</span><div class="soc"><a href="https://www.instagram.com/" title="Instagram">IG</a><a href="https://500px.com/" title="500px">5×</a><a href="https://www.flickr.com/" title="Flickr">FL</a></div></div>
   </div>
 </footer>
 
@@ -913,6 +914,11 @@ document.querySelectorAll('[data-src]').forEach(el=>{const [s,n]=el.dataset.src.
    n.classList.remove('on');n.style.setProperty('--mk',MK[a.cur%MK.length]);void n.offsetWidth;n.classList.add('on');setTimeout(()=>o.classList.remove('on'),2700);
    const i=a.pk[a.cur];a.el.dataset.open=a.s+':'+i;a.el.setAttribute('aria-label','Ver '+a.A[i].t)};
   setInterval(()=>{if(document.hidden)return;albs.forEach(a=>{if(a.el.offsetParent)step(a)})},8500)}}
+/* contador de visitas: una por sesión de navegador, sin cookies */
+(async()=>{try{const B='https://abacus.jasoncameron.dev/',K='fotofilia-es/visitas';let ss=null;try{ss=sessionStorage}catch(e){}
+ const seen=ss&&ss.getItem('ff-v');const r=await fetch(B+(seen?'get/':'hit/')+K,{cache:'no-store'});if(!r.ok)return;const d=await r.json();
+ if(!seen&&ss)try{ss.setItem('ff-v','1')}catch(e){}
+ if(typeof d.value==='number'){document.getElementById('visN').textContent=d.value.toLocaleString('es-ES');document.getElementById('vis').hidden=false}}catch(e){}})();
 const M=SETS.main,places=new Set(M.flatMap(p=>(p.c||'').split('|').filter(Boolean))),total=M.length+SETS.bn.length+SETS.leica.length;
 const metaHTML=[[2,'Viajes'],[places.size,'Países'],[total,'Láminas']].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
 $('meta').innerHTML=metaHTML;$('meta2').innerHTML=[[places.size,'Países'],[2,'Continentes'],['Sony · Leica','Sistemas']].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
