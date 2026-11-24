@@ -921,6 +921,12 @@ document.querySelectorAll('[data-src]').forEach(el=>{const [s,n]=el.dataset.src.
  const seen=ss&&ss.getItem('ff-v');const r=await fetch(B+(seen?'get/':'hit/')+K,{cache:'no-store'});if(!r.ok)return;const d=await r.json();
  if(!seen&&ss)try{ss.setItem('ff-v','1')}catch(e){}
  if(typeof d.value==='number'){document.getElementById('visN').textContent=d.value.toLocaleString('es-ES');document.getElementById('vis').hidden=false}}catch(e){}})();
+/* diagnóstico: fotofilia.es/?diag */
+if(/[?&]diag\b/.test(location.search)){const d=document.createElement('pre');d.style.cssText='position:fixed;left:8px;right:8px;bottom:8px;z-index:9999;background:rgba(0,0,0,.85);color:#e8d29a;font:12px/1.5 monospace;padding:10px;white-space:pre-wrap;margin:0;border:1px solid #c8a96e';document.body.appendChild(d);
+ const t0=Date.now(),mm=q=>window.matchMedia?matchMedia(q).matches:'?';
+ const up=()=>{const hb=document.querySelectorAll('#heroBg .plate'),on=[...hb].findIndex(p=>p.classList.contains('on')),im=hb[on]&&hb[on].querySelector('img'),ims=[...document.querySelectorAll('#heroBg img')];
+  d.textContent=['Reducir movimiento: '+(mm('(prefers-reduced-motion: reduce)')?'SÍ':'no'),'Pantalla táctil: '+(mm('(hover: none)')?'sí':'no'),'Ancho: '+innerWidth+' px · densidad '+devicePixelRatio,'Portada: foto '+(on+1)+' de '+hb.length+' · cargadas '+ims.filter(i=>i.complete&&i.naturalWidth).length+'/'+ims.length,'Animación: '+(im?getComputedStyle(im).animationName:'—'),'Segundos: '+((Date.now()-t0)/1000|0),navigator.userAgent].join('\n')};
+ up();setInterval(up,1000)}
 const M=SETS.main,places=new Set(M.flatMap(p=>(p.c||'').split('|').filter(Boolean))),total=M.length+SETS.bn.length+SETS.leica.length;
 const metaHTML=[[2,'Viajes'],[places.size,'Países'],[total,'Láminas']].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
 $('meta').innerHTML=metaHTML;$('meta2').innerHTML=[[places.size,'Países'],[2,'Continentes'],['Sony · Leica','Sistemas']].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
