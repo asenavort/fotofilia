@@ -76,6 +76,15 @@ header.solid{background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-ba
 .hero{position:relative;height:100svh;min-height:620px;display:grid;place-items:center;overflow:hidden;color:#fff;text-align:center}
 .hero-bg{position:absolute;inset:-8% 0;will-change:transform}
 .hero-bg .plate{position:absolute;inset:0}
+.hero-bg .plate{opacity:0;transition:opacity 2.2s ease;pointer-events:none}
+.hero-bg .plate.on{opacity:1;pointer-events:auto}
+.hero-bg .plate img{transform:scale(1.02);transform-origin:center}
+.hero-bg .plate.on img{animation:kb 9s ease-out forwards}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12)}}
+.hero-dots{position:absolute;right:max(4vw,16px);bottom:172px;display:flex;gap:7px;z-index:2}
+.hero-dots button{width:7px;height:7px;border-radius:50%;border:1px solid rgba(255,255,255,.7);background:transparent;padding:0;cursor:pointer}
+.hero-dots button.on{background:var(--gold);border-color:var(--gold)}
+@media(prefers-reduced-motion:reduce){.hero-bg .plate.on img{animation:none}}
 .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(10,10,10,.5),rgba(10,10,10,.22) 40%,rgba(10,10,10,.68))}
 .hero-in{position:relative;padding:0 20px}
 .hero .eyebrow{color:var(--gold)}
@@ -437,7 +446,7 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
 <!-- ================= INICIO ================= -->
 <div class="view" id="v-inicio">
 <section class="hero" id="inicio">
-  <div class="hero-bg" id="heroBg"><div class="plate" data-src="main:7" data-k="hero" role="button" tabindex="0" aria-label="Ver Laguna espejo"></div></div>
+  <div class="hero-bg" id="heroBg"><div class="plate on" data-src="main:7" data-k="hero" role="button" tabindex="0" aria-label="Ver Laguna espejo"></div></div>
   <div class="hero-in">
     <p class="eyebrow">Fotografía de viaje · fotofilia.es</p>
     <h1>Foto<em>filia</em></h1>
@@ -445,6 +454,7 @@ footer{background:var(--black);color:#fff;padding:56px max(5vw,16px) 36px}
     <p>El mundo visto a través del objetivo. Viajes, luz y la búsqueda de lo auténtico.</p>
   </div>
   <div class="hero-cap" id="heroCap"></div>
+  <div class="hero-dots" id="heroDots" aria-label="Fotografías de portada"></div>
   <nav class="tl" id="timeline" aria-label="Línea de tiempo de los álbumes"><p class="tl-k">Explorar · cuaderno de viaje</p><ol id="tl-list"></ol></nav>
 </section>
 <div class="klee" data-seed="5" aria-hidden="true"></div>
@@ -855,7 +865,16 @@ const fill=(el,p,seed)=>{el.innerHTML=p.img?`<img src="${p.img}" alt="${p.t}, ${
 const exif=p=>`<span class="exif">${p.x.map(v=>`<span>${v}</span>`).join('')}</span>`;
 const $=id=>document.getElementById(id);
 document.querySelectorAll('[data-src]').forEach(el=>{const [s,n]=el.dataset.src.split(':'),p=SETS[s][+n];fill(el,{...p,k:el.dataset.k,mono:p.mono||el.classList.contains('mono')},seedOf(s,+n))});
-{const h=SETS.main[7];document.getElementById('heroCap').innerHTML=`<div>Lámina VIII · ${h.t}, ${h.p}</div><span class="exif">${h.x.map(v=>`<span>${v}</span>`).join('')}</span>`}
+{const HS=[['main',7],['ata',63],['ata',4],['moz',19],['ata',18],['sae',54],['ata',8],['moz',7],['ata',97],['moz',1]];
+ const bg=document.getElementById('heroBg'),cap=document.getElementById('heroCap'),dots=document.getElementById('heroDots');
+ HS.slice(1).forEach(([s,n])=>{const d=document.createElement('div');d.className='plate';d.dataset.src=s+':'+n;d.dataset.k='hero';d.setAttribute('role','button');d.tabIndex=-1;d.setAttribute('aria-label','Ver '+SETS[s][n].t);fill(d,{...SETS[s][n],k:'hero'},seedOf(s,n));bg.appendChild(d)});
+ const pl=[...bg.querySelectorAll('.plate')];let cur=0,timer;
+ const setCap=i=>{const [s,n]=HS[i],h=SETS[s][n];cap.innerHTML=`<div>${h.t} · ${h.p}</div><span class="exif">${h.x.map(v=>`<span>${v}</span>`).join('')}</span>`};
+ dots.innerHTML=HS.map((_,i)=>`<button type="button" aria-label="Foto ${i+1}"${i?'':' class="on"'}></button>`).join('');
+ const go=i=>{pl[cur].classList.remove('on');pl[cur].tabIndex=-1;dots.children[cur].classList.remove('on');cur=(i+HS.length)%HS.length;const im=pl[cur].querySelector('img');if(im){im.loading='eager';im.style.animation='none';void im.offsetWidth;im.style.animation=''}pl[cur].classList.add('on');pl[cur].tabIndex=0;dots.children[cur].classList.add('on');setCap(cur)};
+ const play=()=>{clearInterval(timer);if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))timer=setInterval(()=>{if(!document.hidden)go(cur+1)},7000)};
+ [...dots.children].forEach((b,i)=>b.onclick=e=>{e.stopPropagation();go(i);play()});
+ setCap(0);setTimeout(()=>pl.forEach((p,i)=>{const im=p.querySelector('img');if(im&&i<3)im.loading='eager'}),0);play()}
 const M=SETS.main,places=new Set(M.flatMap(p=>(p.c||'').split('|').filter(Boolean))),total=M.length+SETS.bn.length+SETS.leica.length;
 const metaHTML=[[2,'Viajes'],[places.size,'Países'],[total,'Láminas']].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
 $('meta').innerHTML=metaHTML;$('meta2').innerHTML=[[places.size,'Países'],[2,'Continentes'],['Sony · Leica','Sistemas']].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('');
