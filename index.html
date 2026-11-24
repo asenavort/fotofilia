@@ -872,10 +872,17 @@ const slug=t=>t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').re
 const ALBUMS={'cartagena-colombia':'car','atacama-chile':'ata','vilankulos-inhambane-y-maputo':'moz','sudafrica-y-esuatini':'sae'};
 const renderLots=(set,box)=>{const it=SETS[set];let s='';for(let i=0;i<it.length;i+=10){const b=it.slice(i,i+10);s+=`<section class="lot"><div class="lot-h"><h3>Lote ${ROMAN(i/10+1)}</h3><span class="lbl">Láminas ${String(i+1).padStart(2,'0')}–${String(i+b.length).padStart(2,'0')}</span></div><div class="lot-g">${b.map((p,k)=>`<figure><div class="plate" role="button" tabindex="0" data-open="${set}:${i+k}" aria-label="Ver ${p.t}"></div><figcaption>${String(i+k+1).padStart(2,'0')} · ${p.t}</figcaption></figure>`).join('')}</div></section>`}
  box.innerHTML=s;box.querySelectorAll('.plate').forEach(el=>{const n=+el.dataset.open.split(':')[1];fill(el,{...it[n],img:it[n].th||it[n].img},seedOf(set,n))})};
+const HOME=[
+ {al:'Vilankulos, Inhambane y Maputo',t:'Mozambique',set:'moz',pick:[2,7,4,19]},
+ {al:'Sudáfrica y Esuatini',t:'Sudáfrica y Esuatini',set:'sae',pick:[0,12,43,54]},
+ {al:'Atacama, Chile',t:'Atacama, Chile',set:'ata',pick:[11,4,8,10]},
+ {al:'Cartagena, Colombia',t:'Cartagena de Indias, Colombia',set:'car',pick:[1,0,7,8]}];
+const renderHome=box=>{box.innerHTML=HOME.map(g=>{const it=SETS[g.set],sp=SPANS[g.pick.length];return `<section class="alb" id="alb-main-${slug(g.al)}"><div class="alb-h"><h3>${g.t}</h3><a class="alb-more" href="#${slug(g.al)}">Ver el álbum completo · ${it.length} láminas →</a></div><div class="alb-g">${g.pick.map((n,k)=>{const p=it[n];return `<figure class="card" style="--s:${sp[k]};--rc:${p.r==='america'?'#d99a86':'#e0812f'}"><div class="plate" role="button" tabindex="0" data-open="${g.set}:${n}" aria-label="Ver ${p.t}"></div><figcaption class="ov"><small>${g.t}</small><b>${p.t}</b>${exif(p)}</figcaption></figure>`}).join('')}</div></section>`}).join('');
+ box.querySelectorAll('.plate').forEach(el=>{const [s,n]=el.dataset.open.split(':');fill(el,SETS[s][+n],seedOf(s,+n))})};
 const renderAlbums=(set,box,overlay)=>{const items=SETS[set],groups=[];items.forEach((p,n)=>{let g=groups.find(x=>x.al===(p.al||p.p));if(!g){g={al:p.al||p.p,ns:[]};groups.push(g)}g.ns.push(n)});
  box.innerHTML=groups.map(g=>{const sp=SPANS[g.ns.length]||g.ns.map(()=>3);return `<section class="alb" id="alb-${set}-${slug(g.al)}"><div class="alb-h"><h3>${g.al}</h3>${ALBUMS[slug(g.al)]?`<a class="alb-more" href="#${slug(g.al)}">Ver el álbum completo · ${SETS[ALBUMS[slug(g.al)]].length} láminas →</a>`:`<span class="lbl">${g.ns.length} ${g.ns.length===1?'lámina':'láminas'}</span>`}</div><div class="alb-g">${g.ns.map((n,k)=>{const p=items[n];return `<figure class="card" style="--s:${sp[k]};--rc:${p.r==='america'?'#d99a86':'#e0812f'}"><div class="plate" role="button" tabindex="0" data-open="${set}:${n}" aria-label="Ver ${p.t}"></div><figcaption class="ov"><small>${g.al}</small><b>${p.t}</b>${exif(p)}</figcaption></figure>`}).join('')}</div></section>`}).join('');
  box.querySelectorAll('.plate').forEach(el=>{const n=+el.dataset.open.split(':')[1];fill(el,items[n],seedOf(set,n))})};
-renderAlbums('main',$('albums'));
+renderHome($('albums'));
 renderLots('sae',$('lots-sae'));
 renderLots('car',$('lots-car'));
 renderLots('ata',$('lots-ata'));
