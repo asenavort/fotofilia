@@ -76,8 +76,11 @@ header.solid{background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-ba
 .hero{position:relative;height:100svh;min-height:620px;display:grid;place-items:center;overflow:hidden;color:#fff;text-align:center}
 .hero-bg{position:absolute;inset:-8% 0;will-change:transform}
 .hero-bg .plate{position:absolute;inset:0}
-.hero-bg .plate{opacity:0;transition:opacity 4.5s cubic-bezier(.4,0,.6,1);will-change:opacity;pointer-events:none}
-.hero-bg .plate.on{opacity:1;pointer-events:auto;z-index:1}
+.hero-bg .plate{opacity:0;transition:opacity 4.5s cubic-bezier(.4,0,.6,1);pointer-events:none}
+.hero-bg .plate.prev{opacity:1;z-index:1;transition:none}
+.hero-bg .plate.on{opacity:1;pointer-events:auto;z-index:2}
+.hero-bg .plate{background:transparent;isolation:auto}
+.hero-bg .plate::after{display:none}
 .hero-bg .plate img{transform:scale(1.14);transform-origin:center;will-change:transform}
 .hero-bg .plate.run img{animation:var(--kb,kb-in) 16s cubic-bezier(.25,.1,.75,.9) forwards}
 @keyframes kb-in{from{transform:scale(1.04)}to{transform:scale(1.2)}}
@@ -877,7 +880,7 @@ document.querySelectorAll('[data-src]').forEach(el=>{const [s,n]=el.dataset.src.
  const pl=[...bg.querySelectorAll('.plate')];let cur=0,timer;const KB=['kb-in','kb-l','kb-out','kb-up','kb-r','kb-dn','kb-out','kb-r','kb-in','kb-l'];pl[0].style.setProperty('--kb',KB[0]);
  const setCap=i=>{const [s,n]=HS[i],h=SETS[s][n];cap.innerHTML=`<div>${h.t} · ${h.p}</div><span class="exif">${h.x.map(v=>`<span>${v}</span>`).join('')}</span>`};
  dots.innerHTML=HS.map((_,i)=>`<button type="button" aria-label="Foto ${i+1}"${i?'':' class="on"'}></button>`).join('');
- const go=i=>{pl[cur].classList.remove('on');pl[cur].tabIndex=-1;dots.children[cur].classList.remove('on');cur=(i+HS.length)%HS.length;const im=pl[cur].querySelector('img');if(im)im.loading='eager';const nx=pl[(cur+1)%pl.length].querySelector('img');if(nx){nx.loading='eager';nx.decode&&nx.decode().catch(()=>{})}pl[cur].classList.remove('run');pl[cur].style.setProperty('--kb',KB[cur%KB.length]);void pl[cur].offsetWidth;pl[cur].classList.add('run','on');pl[cur].tabIndex=0;dots.children[cur].classList.add('on');setCap(cur)};
+ const go=i=>{if(i===cur)return;pl.forEach((p,k)=>{if(k!==cur)p.classList.remove('prev')});const old=pl[cur];old.classList.add('prev');old.classList.remove('on');clearTimeout(go.t);go.t=setTimeout(()=>old.classList.remove('prev'),4800);pl[cur].tabIndex=-1;dots.children[cur].classList.remove('on');cur=(i+HS.length)%HS.length;const im=pl[cur].querySelector('img');if(im)im.loading='eager';const nx=pl[(cur+1)%pl.length].querySelector('img');if(nx){nx.loading='eager';nx.decode&&nx.decode().catch(()=>{})}pl[cur].classList.remove('run');pl[cur].style.setProperty('--kb',KB[cur%KB.length]);void pl[cur].offsetWidth;pl[cur].classList.add('run','on');pl[cur].tabIndex=0;dots.children[cur].classList.add('on');setCap(cur)};
  const play=()=>{clearInterval(timer);if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))timer=setInterval(()=>{if(!document.hidden)go(cur+1)},9500)};
  [...dots.children].forEach((b,i)=>b.onclick=e=>{e.stopPropagation();go(i);play()});
  setCap(0);setTimeout(()=>pl.forEach((p,i)=>{const im=p.querySelector('img');if(im&&i<3)im.loading='eager'}),0);play()}
